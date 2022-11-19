@@ -5,7 +5,10 @@ import { writeToDB } from '../Firebase/firestore'
 import { collection, onSnapshot } from 'firebase/firestore';
 import { firestore } from '../Firebase/firebase-setup';
 import ImageManager from "./ImageManager";
-// import  styles  from "./styles";
+import { LogBox } from 'react-native';
+import  styles  from "./styles";
+
+LogBox.ignoreAllLogs();
 
 const AddNew = () => {
     const [text, onChangeText] = useState("");
@@ -16,25 +19,7 @@ const AddNew = () => {
         console.log("imageHandler called", uri);
         setUri(uri);
     };
-    // const [number, onChangeNumber] = React.useState(null);
-    // const [image, setImage] = useState(null);
-    // const [status, requestPermission] = ImagePicker.use s();
 
-    // const pickImage = async () => {
-    //     // No permissions request is necessary for launching the image library
-    //     let result = await ImagePicker.launchImageLibraryAsync({
-    //       mediaTypes: ImagePicker.MediaTypeOptions.All,
-    //       allowsEditing: true,
-    //       aspect: [4, 3],
-    //       quality: 1,
-    //     });
-    
-    //     console.log(result);
-    
-    //     if (!result.canceled) {
-    //       setImage(result.assets[0].uri);
-    //     }
-    // };
     
     useEffect(() => {
       const unsubscribe = onSnapshot(
@@ -65,36 +50,42 @@ const AddNew = () => {
     const onAdd = async function (newClothesObj) {
         // await writeToDB({ description: newClothesObj.description, amount: newClothesObj.amount, important: newClothesObj.important });
         await writeToDB({ title: newClothesObj.title, uri: newClothesObj.uri, content: newClothesObj.content });
-        console.log("current clothes: ", clothes);
+        // console.log("current clothes: ", clothes);
         // setModalVisible(false);
         // onChangeText("");
         // onChangeContent("");
     };
 
     return (
-        <SafeAreaView>
-            <Text>
-                Title
-            </Text>
-            <TextInput
-                value = {text}
-                onChangeText={(newText) => {onChangeText(newText)}}
-                placeholder="THIS FIT IS IN THE NAME! GOTTA HAVE IT!"
-            />
+        <SafeAreaView style = {styles.addNew}>
+            <View style = {styles.addNewTitle}>
+                <Text>
+                    Title
+                </Text>
+                <TextInput
+                    value = {text}
+                    onChangeText={(newText) => {onChangeText(newText)}}
+                    placeholder="THIS FIT IS IN THE NAME! GOTTA HAVE IT!"
+                />
+            </View>
 
-            <ImageManager imageHandler={imageHandler} />
 
+            <View style = {styles.addNewImage}>
+                <ImageManager imageHandler={imageHandler} />
+            </View>
 
-            <Text>
-                Content
-            </Text>
-            <TextInput
-                value = {content}
-                onChangeText={(newContent) => {onChangeContent(newContent)}}
-                placeholder="Enter the information about this item!"
-            />
+            <View style = {styles.addNewContent}>
+                <Text>
+                    Content
+                </Text>
+                <TextInput
+                    value = {content}
+                    onChangeText={(newContent) => {onChangeContent(newContent)}}
+                    placeholder="Enter the information about this item!"
+                />
+            </View>
 
-            <View >
+            <View style = {styles.addNewSubmit}>
                 <Pressable
                     onPress={() => {
                         //location wqaiting for the next week......
@@ -102,12 +93,12 @@ const AddNew = () => {
                         onAdd(newClothesObj);
                         // navigation.goBack();
                         // navigation.navigate('Home');
-                        console.log("confirm add!");
+                        // console.log("confirm add!");
                         Alert.alert("New Item added successfully!");
                     }}
                     disabled={text.length? false: true}
                 >
-                    <Text>Submit</Text>
+                    <Text style = {styles.blueButton}>Submit</Text>
                 </Pressable>
             </View>
 
