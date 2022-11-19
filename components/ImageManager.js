@@ -1,6 +1,7 @@
-import { View, Image, Button, Text } from "react-native";
+import { View, Image, Text, Button } from "react-native";
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
+import  styles  from "./styles";
 
 export default function ImageManager({ imageHandler }) {
   const [permissionInfo, requestPermisson] = ImagePicker.useCameraPermissions();
@@ -28,12 +29,13 @@ export default function ImageManager({ imageHandler }) {
   };
   return (
     <View>
-      <Button title="Upload Image" onPress={takeImageHandler} />
+      <Button title="Take an Image" onPress={takeImageHandler} />
       {imageUri ? (
         <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
       ) : (
         <Text> No image yet!</Text>
       )}
+      <Button title="Delete" onPress={() => {setImageUri("")}} />
     </View>
   );
 }
