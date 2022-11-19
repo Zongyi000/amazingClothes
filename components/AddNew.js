@@ -14,6 +14,8 @@ const AddNew = () => {
     const [text, onChangeText] = useState("");
     const [content, onChangeContent] = useState("");
     const [uri, setUri] = useState("");
+    // const [likes, onChangeLikes] = useState("");
+    // const [dislikes, onChangeDislikes] = useState("");
     const [clothes, setClothes] = useState([]);
     const imageHandler = (uri) => {
         console.log("imageHandler called", uri);
@@ -49,7 +51,7 @@ const AddNew = () => {
 
     const onAdd = async function (newClothesObj) {
         // await writeToDB({ description: newClothesObj.description, amount: newClothesObj.amount, important: newClothesObj.important });
-        await writeToDB({ title: newClothesObj.title, uri: newClothesObj.uri, content: newClothesObj.content });
+        await writeToDB({ title: newClothesObj.title, uri: newClothesObj.uri, content: newClothesObj.content, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes});
         // console.log("current clothes: ", clothes);
         // setModalVisible(false);
         // onChangeText("");
@@ -89,7 +91,7 @@ const AddNew = () => {
                 <Pressable
                     onPress={() => {
                         //location wqaiting for the next week......
-                        const newClothesObj = {title: text, uri: uri, content: content};
+                        const newClothesObj = {title: text, uri: uri, content: content, likes: 0, dislikes: 0};
                         onAdd(newClothesObj);
                         // navigation.goBack();
                         // navigation.navigate('Home');
