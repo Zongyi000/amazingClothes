@@ -12,6 +12,7 @@ import Discover from "./components/Discover";
 import MyProfile from "./components/MyProfile";
 import Top10BestSeller from "./components/Top10BestSeller";
 import AddReview from "./components/AddReview";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
@@ -36,6 +37,9 @@ function HomeTabs({ navigation, route }) {
               color="#000"
             />
           ),
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="image-plus" size={size} color={color} />
+          )
         }}
       />
       <Tab.Screen
@@ -51,6 +55,9 @@ function HomeTabs({ navigation, route }) {
               color="#000"
             />
           ),
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home-variant" size={size} color={color} />
+          )
         }}
       />
 
@@ -67,6 +74,9 @@ function HomeTabs({ navigation, route }) {
               color="#000"
             />
           ),
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="fire" size={size} color={color} />
+          )
         }}
       />
     </Tab.Navigator>
