@@ -20,7 +20,6 @@ React Native | JavaScript | Firebase
 - This screen allows users to share information of their favorite clothes, including name, image, and content. Utilized Firebase to store the clothes information.
 
 ### Discover(Jing Luo)
-![]()
 - Working in process.
 
 ### Top 10(Peiyao Li)
@@ -28,5 +27,4 @@ React Native | JavaScript | Firebase
 - Top 10 provides a content-based recommendation system based on user's favorite records. Working in progress.
 
 ### My Profile(Peiyao Li)
-![My Profile]()
 - Working in progress.
