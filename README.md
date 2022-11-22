@@ -17,6 +17,7 @@ React Native | JavaScript | Firebase
 ## Iteration 1
 ### Add New(Zongyi Jiang)
 ![Add New](https://drive.google.com/uc?export=view&id=1akzONl3enRAhDyrJruPjfoIExJ0Bu2SX)
+<img src="https://drive.google.com/uc?export=view&id=1akzONl3enRAhDyrJruPjfoIExJ0Bu2SX"  style="height:50%; width:50%" >
 - This screen allows users to share information of their favorite clothes, including name, image, and content. Utilized Firebase to store the clothes information.
 
 ### Discover(Jing Luo)
