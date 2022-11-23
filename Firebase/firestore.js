@@ -1,10 +1,13 @@
 import { FirebaseError } from "firebase/app";
 import { collection, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestore";
-import { firestore } from "./firebase-setup";
+import { firestore, auth } from "./firebase-setup";
 
 export async function writeToDB(cloth) {
     try {
-      const docRef = await addDoc(collection(firestore, "clothes"), cloth);
+      const docRef = await addDoc(collection(firestore, "clothes"), {
+        ...cloth,
+        user: auth.currentUser.uid,
+      });
     } catch (err) {
       console.log(err);
     }
