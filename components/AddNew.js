@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Pressable, SafeAreaView, View, Text, TextInput, Alert, Button } from "react-native";
+import { Pressable, ScrollView, View, Text, TextInput, Alert, Button } from "react-native";
 import { writeToDB } from '../Firebase/firestore'
 import { collection, onSnapshot } from 'firebase/firestore';
 import { firestore } from '../Firebase/firebase-setup';
@@ -64,7 +64,7 @@ const AddNew = () => {
     };
 
     return (
-        <SafeAreaView style = {styles.addNew}>
+        <ScrollView style = {styles.addNew}>
             <View style = {styles.addNewTitle}>
                 <Text>
                     Title
@@ -112,7 +112,7 @@ const AddNew = () => {
                 </Pressable>
             </View>
 
-        </SafeAreaView>
+        </ScrollView>
     );
 }
 

@@ -1,7 +1,7 @@
 import  { Button } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   NavigationContainer,
@@ -14,6 +14,11 @@ import Top10BestSeller from "./components/Top10BestSeller";
 import AddReview from "./components/AddReview";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import { onAuthStateChanged} from "firebase/auth";
+import { auth } from "./Firebase/firebase-setup";
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -22,6 +27,69 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
+export default function App() {
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsUserAuthenticated(true);
+      } else {
+        setIsUserAuthenticated(false);
+      }
+    });
+  });
+  const AuthStack = () => {
+    return (
+      <Stack.Navigator
+        screenOptions={{
+          headerTitleAlign: "center",
+        }}
+      >
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} />
+      </Stack.Navigator>
+    );
+  };
+
+  const AppStack = () => {
+    return (
+      <Stack.Navigator>
+      <Stack.Screen
+        name="Back"
+        component={HomeTabs}
+        options={({ route }) => ({
+          headerTitle: getHeaderTitle(route),
+          headerShown: false,
+        })
+      }
+      />
+
+      <Stack.Screen
+        name="MyProfile"
+        component={MyProfile}
+        options={{
+          headerTitleAlign: "center",
+        }}
+      />
+
+      <Stack.Screen
+        name="AddReview"
+        component={AddReview}
+        options={{
+          headerTitleAlign: "center",
+        }}
+      />
+    </Stack.Navigator>
+    );
+  };
+  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
+  return (
+    <NavigationContainer>
+      {isUserAuthenticated ? AppStack() : AuthStack()}
+    </NavigationContainer>
+  );
+}
+
 
 function HomeTabs({ navigation, route }) {
   return (
@@ -97,42 +165,3 @@ function getHeaderTitle(route) {
   }
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Back"
-          component={HomeTabs}
-          options={({ route }) => ({
-            headerTitle: getHeaderTitle(route),
-            headerShown: false,
-          })
-        }
-        />
-
-        <Stack.Screen
-          name="MyProfile"
-          component={MyProfile}
-          options={{
-            headerStyle: { backgroundColor: "#995099" },
-            headerTintColor: "#fff",
-            headerTitleAlign: "center",
-          }}
-        />
-
-        <Stack.Screen
-          name="AddReview"
-          component={AddReview}
-          options={{
-            headerStyle: { backgroundColor: "#995099" },
-            headerTintColor: "#fff",
-            headerTitleAlign: "center",
-          }}
-        />
-        {/* <Stack.Screen name="Map" component={Map} /> */}
-        
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
