@@ -49,54 +49,6 @@ export default function Top10BestSeller () {
               >
               </FlatList>
           </View>
-          
       </SafeAreaView>
   );
 }
-
-
-
-//   // return (
-//     // <View style={{flex:1, marginTop:100}}>
-//     //   <FlatList
-//     //     style={{height: '100%'}}
-//     //     data={clothes}
-//     //     numColumns={1}
-//     //     renderItem={({item}) => (
-//     //       <Pressable
-//     //         style = {styles.container}
-//     //       >
-//     //         <View style={StyleSheet.innercontainer}>
-//     //           <Text style = {styles.itemTitle}>{item.title}</Text>
-//     //           <Text style = {styles.itemContent}>{item.content}</Text>
-//     //         </View>
-//     //       </Pressable>
-//     //     )}
-//     //   />
-//     // </View>
-//     return (
-//       <SafeAreaView style={styles.areaContainer}>
-//          <View >
-//               <FlatList 
-//                   data={clothes}
-//                   style={styles.flatList}
-//                   renderItem = {({ item }) => {
-//                       return (
-//                           <ExpenseItem 
-//                               cloth={item}
-//                               onItemPress={itemPressed}
-//                           />
-//                       );
-//                   }}
-//                   contentContainerStyle={styles.scrollViewItems}
-//               >
-//               </FlatList>
-//           </View>
-          
-//       </SafeAreaView>
-//   );
-// }
-
-// export default Top10BestSeller;
-
-
