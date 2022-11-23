@@ -17,7 +17,7 @@ function ClothItem ({cloth}) {
 
             <View style={styles.innercontainer}>
                 <Text style={styles.itemTop}>
-                    Top 1
+                    {cloth.like}
                 </Text>
                 <Text style={styles.itemTitle}>
                     {cloth.title}

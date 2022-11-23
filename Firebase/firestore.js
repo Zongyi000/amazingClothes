@@ -28,3 +28,43 @@ export async function editImportanceFromDB(key) {
     console.log(err);
   }
 }
+
+export async function addLikesToDB(cur) {
+  const num = cur.likes
+  try {
+    await updateDoc(
+      doc(firestore, "clothes", `${cur.key}`),
+      { likes: 1 + num },
+      { merge: true }
+    );
+    console.log("add likes ok")
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function addDislikesToDB(cur) {
+  const num = cur.dislikes
+  try {
+    await updateDoc(
+      doc(firestore, "clothes", `${cur.key}`),
+      { dislikes: 1 + num },
+      { merge: true }
+    );
+    console.log("add dilikes ok")
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function addreviewToDB(review) {
+  try {
+    const docRef = await addDoc(collection(firestore, "reviews"), {
+      ...review,
+      user: auth.currentUser.uid,
+    });
+    console.log("add reviw ok")
+  } catch (err) {
+    console.log(err);
+  }
+}
