@@ -29,13 +29,16 @@ export default function ImageManager({ imageHandler }) {
   };
   return (
     <View>
-      <Button title="Take an Image" onPress={takeImageHandler} />
+      <Button title="Upload New Image" onPress={takeImageHandler} />
       {imageUri ? (
-        <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+        <View>
+            <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+            <Button title="Delete" onPress={() => {setImageUri("")}} />
+        </View>
       ) : (
         <Text> No image yet!</Text>
       )}
-      <Button title="Delete" onPress={() => {setImageUri("")}} />
+      
     </View>
   );
 }

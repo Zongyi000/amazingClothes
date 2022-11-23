@@ -17,6 +17,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
+// import Map from "./components/Map";
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -128,6 +130,8 @@ export default function App() {
             headerTitleAlign: "center",
           }}
         />
+        {/* <Stack.Screen name="Map" component={Map} /> */}
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
