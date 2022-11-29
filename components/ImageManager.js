@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import  styles  from "./styles";
 
-export default function ImageManager({ imageHandler }) {
+export default function ImageManager({ photoHandler, imageHandler }) {
   const [permissionInfo, requestPermisson] = ImagePicker.useCameraPermissions();
   const [imageUri, setImageUri] = useState("");
+  const [photoUri, setPhotoUri] = useState("");
   const verifyPermission = async () => {
     if (permissionInfo.granted) {
       return true;
@@ -13,30 +14,66 @@ export default function ImageManager({ imageHandler }) {
     const requestPermissionResponse = await requestPermisson();
     return requestPermissionResponse.granted;
   };
-  const takeImageHandler = async () => {
+
+
+  const takePhotoHandler = async () => {
     try {
       const hasPermission = await verifyPermission();
       if (!hasPermission) {
         return;
       }
-      const result = await ImagePicker.launchCameraAsync();
-      // if (!result.canceled) {setImageUri(result.assets[0].uri)}
-      setImageUri(result.uri);
-      imageHandler(result.uri);
+      let takePhotoResult = await ImagePicker.launchCameraAsync({allowsEditing: true}); //this is to take a photo
+
+      if (!takePhotoResult.canceled) {setPhotoUri(takePhotoResult.assets[0].uri)}
+      setPhotoUri(takePhotoResult.uri);
+      photoHandler(takePhotoResult.uri);
     } catch (err) {
       console.log("Image taking error ", err);
     }
   };
+
+  const uploadImageHandler = async () => {
+    try {
+      const hasPermission = await verifyPermission();
+      if (!hasPermission) {
+        return;
+      }
+      let uploadResult = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      if (!uploadResult.canceled) {setImageUri(uploadResult.assets[0].uri)}
+      setImageUri(uploadResult.uri);
+      imageHandler(uploadResult.uri);
+    } catch (err) {
+      console.log("Image taking error ", err);
+    }
+  };
+
   return (
     <View>
-      <Button title="Upload New Image" onPress={takeImageHandler} />
+      <Button title="Take a Photo" onPress={takePhotoHandler} />
+      {photoUri ? (
+        <View>
+            <Image source={{ uri: photoUri }} style={{ width: 200, height: 200 }} />
+            <Button title="Delete" onPress={() => {setPhotoUri("")}} />
+        </View>
+      ) : (
+        <Text> No image yet! Please take a photo using your camera...</Text>
+      )}
+
+
+      <Button title="Upload New Image" onPress={uploadImageHandler} />
       {imageUri ? (
         <View>
             <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
             <Button title="Delete" onPress={() => {setImageUri("")}} />
         </View>
       ) : (
-        <Text> No image yet!</Text>
+        <Text> No image yet! Please upload a photo from your library...</Text>
       )}
       
     </View>

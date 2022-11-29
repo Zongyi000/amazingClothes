@@ -68,7 +68,7 @@ export default function LocationManager({locationHandler}) {
   // };
   return (
     <View>
-      <Button title="Locate Me" onPress={locateUserHandler} />
+      <Button title="Upload Your Location" onPress={locateUserHandler} />
       {/* <Button title="Let me pick on the map" onPress={locationPickerHandler} /> */}
 
       {location && (

@@ -33,6 +33,7 @@
       [
         "expo-image-picker",
         {
+          "cameraPermission": "The app needs access to your camera.",
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]

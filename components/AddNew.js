@@ -14,14 +14,22 @@ LogBox.ignoreAllLogs();
 const AddNew = () => {
     const [text, onChangeText] = useState("");
     const [content, onChangeContent] = useState("");
-    const [uri, setUri] = useState("");
+    const [imageUri, setImageUri] = useState("");
+    const [photoUri, setPhotoUri] = useState("");
     const [location, setLocation] = useState('');
+    const [api, onChangeApi] = useState("");
     // const [likes, onChangeLikes] = useState("");
     // const [dislikes, onChangeDislikes] = useState("");
     const [clothes, setClothes] = useState([]);
-    const imageHandler = (uri) => {
-        console.log("imageHandler called", uri);
-        setUri(uri);
+
+    const photoHandler = (photoUri) => {
+        console.log("photoHandler called", photoUri);
+        setPhotoUri(photoUri);
+    };
+
+    const imageHandler = (imageUri) => {
+        console.log("imageHandler called", imageUri);
+        setImageUri(imageUri);
     };
     const locationHandler = (currentLocation) => {
         console.log("locationHandler called", currentLocation);
@@ -56,7 +64,7 @@ const AddNew = () => {
 
     const onAdd = async function (newClothesObj) {
         // await writeToDB({ description: newClothesObj.description, amount: newClothesObj.amount, important: newClothesObj.important });
-        await writeToDB({ title: newClothesObj.title, uri: newClothesObj.uri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes});
+        await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api});
         // console.log("current clothes: ", clothes);
         // setModalVisible(false);
         // onChangeText("");
@@ -78,7 +86,7 @@ const AddNew = () => {
 
 
             <View style = {styles.addNewImage}>
-                <ImageManager imageHandler={imageHandler} />
+                <ImageManager photoHandler={photoHandler} imageHandler={imageHandler} />
             </View>
 
             <View style = {styles.addNewContent}>
@@ -95,11 +103,22 @@ const AddNew = () => {
                 <LocationManager locationHandler={locationHandler}/>
             </View>
 
-            <View style = {styles.addNewSubmit}>
+            <View style = {styles.addNewTitle}>
+                <Text>
+                    Upload Shopping Link
+                </Text>
+                <TextInput
+                    value = {api}
+                    onChangeText={(newApi) => {onChangeApi(newApi)}}
+                    placeholder="THIS IS THE EXTERNAL API OF THE CLOTHES!"
+                />
+            </View>
+
+            <View style = {styles.addNewTitle}>
                 <Pressable
                     onPress={() => {
                         //location wqaiting for the next week......
-                        const newClothesObj = {title: text, uri: uri, content: content, location: location, likes: 0, dislikes: 0};
+                        const newClothesObj = {title: text, photoUri: photoUri, imageUri: imageUri, content: content, location: location, likes: 0, dislikes: 0, api: api};
                         onAdd(newClothesObj);
                         // navigation.goBack();
                         // navigation.navigate('Home');
