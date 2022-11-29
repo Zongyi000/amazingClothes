@@ -16,7 +16,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { onAuthStateChanged} from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./Firebase/firebase-setup";
 
 import { StatusBar } from 'expo-status-bar';

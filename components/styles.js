@@ -34,10 +34,7 @@ const styles = StyleSheet.create({
     },
     blueButton: {
         color: '#007AFF',
-    },
-
-  
-
+    }, 
 });
 
 export default styles;
