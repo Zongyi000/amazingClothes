@@ -33,10 +33,10 @@ function DiscoverItem({ cloth }) {
             </View>
 
             <Image 
-                    style={styles.tinyLogo}
-                    source={{
-                        uri: cloth.uri !== ""? cloth.uri : 'https://reactnative.dev/img/tiny_logo.png',
-                    }}
+                style={styles.tinyLogo}
+                source={{
+                    uri: cloth.uri !== ""? cloth.uri : 'https://reactnative.dev/img/tiny_logo.png',
+                }}
             />
 
             <View style = {styles.cardFooter}>

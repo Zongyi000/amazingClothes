@@ -13,12 +13,10 @@ import MyProfile from "./components/MyProfile";
 import Top10BestSeller from "./components/Top10BestSeller";
 import AddReview from "./components/AddReview";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./Firebase/firebase-setup";
-
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 

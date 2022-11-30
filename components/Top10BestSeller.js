@@ -6,8 +6,8 @@ import { collection, onSnapshot } from 'firebase/firestore';
 import { firestore } from '../Firebase/firebase-setup';
 
 export default function Top10BestSeller () {
-
   const [clothes, setClothes] = useState([]);
+
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(firestore, "clothes"),
@@ -41,7 +41,7 @@ export default function Top10BestSeller () {
                       return (
                           <ClothItem
                               cloth={item}
-                              // onItemPress={itemPressed}
+                              showResult={false}
                           />
                       );
                   }}

@@ -1,14 +1,9 @@
-// import React from 'react';
-// import { View, Text, Button } from 'react-native';
-// import { styles } from '../styles'
 import { auth } from "../Firebase/firebase-setup";
 import {signOut} from "firebase/auth";
 import { collection, onSnapshot } from 'firebase/firestore';
 import { firestore } from '../Firebase/firebase-setup';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-const Stack = createNativeStackNavigator();
+import { deleteFromDB } from "../Firebase/firestore";
 // export default MyProfile = () =>
 //   <View style={styles.center}>
 //     {/* <Text style={styles.title}>MyProfile</Text> */}
@@ -17,22 +12,19 @@ const Stack = createNativeStackNavigator();
 //     <Button title="Logout" onPress={() => signOut(auth)} />
 //   </View>
 
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   Image,
-  TouchableOpacity,
   StyleSheet,
-  ScrollView,
   SafeAreaView,
-  FlatList
+  FlatList,
+  Button
 } from 'react-native';
-
 import ClothItem from '../components/ClothItem';
 
-const MyProfile = ({navigation, route}) => {
-
+const MyProfile = () => {
   const [clothes, setClothes] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -56,8 +48,13 @@ const MyProfile = ({navigation, route}) => {
     };
   }, []);
 
+  async function onDelete(deletedKey) {
+    console.log("delete pressed ", deletedKey);
+    await deleteFromDB(deletedKey);
+  }
+
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
         <Image
           style={styles.userImg}
@@ -82,14 +79,15 @@ const MyProfile = ({navigation, route}) => {
           </View>
         </View>
       </View>
+      <Button title="Logout" onPress={() => signOut(auth)} />
       <FlatList 
         data={clothes?.filter(data => data?.user === auth.currentUser.uid)}
-        // data={clothes}
         renderItem = {({ item }) => {
           return (
             <ClothItem
               cloth={item}
-              // onItemPress={itemPressed}
+              onDelete={onDelete}
+              showResult={true}
             />
           );
         }}
