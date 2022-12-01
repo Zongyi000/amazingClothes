@@ -16,20 +16,19 @@ React Native | JavaScript | Firebase
 
 ## Iteration 1
 ### Add New(Zongyi Jiang)
-<img src="https://drive.google.com/uc?export=view&id=1akzONl3enRAhDyrJruPjfoIExJ0Bu2SX"  style="height:30%; width:30%" >
 - This screen allows users to share information of their favorite clothes, including name, image, and content. Utilized Firebase to store the clothes information.
 
 ### Discover(Jing Luo)
 - Working in process.
 
 ### Top 10(Peiyao Li)
-<img src="https://drive.google.com/uc?export=view&id=1tnrpIwbxGX-qY9l1Kr5oJslpArNrUbwY"  style="height:30%; width:30%" >
 - Top 10 provides a content-based recommendation system based on user's favorite records. Working in progress.
 
 ### My Profile(Peiyao Li)
 - Working in progress.
 
 ## Iteration 2
+- Please refresh the page when image not loading
 ### Add New(Zongyi Jiang)
 <img src="https://drive.google.com/uc?export=view&id=1-UAkF4ztUqyMXTYmf8O_PBe1ueanGVvk"  style="height:30%; width:30%" >
 <img src="https://drive.google.com/uc?export=view&id=1g63dmGFYloduYtKpQaIngUpKf3GrQ9El"  style="height:30%; width:30%" >
