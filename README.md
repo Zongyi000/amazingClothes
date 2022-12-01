@@ -28,3 +28,26 @@ React Native | JavaScript | Firebase
 
 ### My Profile(Peiyao Li)
 - Working in progress.
+
+## Iteration 2
+### Add New(Zongyi Jiang)
+<img src="https://drive.google.com/uc?export=view&id=1-UAkF4ztUqyMXTYmf8O_PBe1ueanGVvk"  style="height:30%; width:30%" >
+<img src="https://drive.google.com/uc?export=view&id=1g63dmGFYloduYtKpQaIngUpKf3GrQ9El"  style="height:30%; width:30%" >
+- Add new features such as tracking user's geographic location with Google Map, uploading an image from photos library and taking an image in a mobile app.
+
+### Discover(Jing Luo)
+<img src="https://drive.google.com/uc?export=view&id=1m50hsFLqLEiOVwVMijdkNRs9lKjQ9_Oz"  style="height:30%; width:30%" >
+- Add new features like searching specific clothes from database, voting like or dislike for further recommendations, adding reviews to the products.
+
+### Top 10(Peiyao Li)
+<img src="https://drive.google.com/uc?export=view&id=1u7SnwK8QkDQ5qBwXPBHcgLsXhOR5FuPJ"  style="height:30%; width:30%" >
+- Working in progress.
+
+### My Profile(Peiyao Li)
+<img src="https://drive.google.com/uc?export=view&id=1KEYCkhNZJKy8Uhi0rWSz1Wqch1Pxn4k1"  style="height:30%; width:30%" >
+- Add new features like showing user's basical info, adding authorization to ensure that only a user who created a post is able to delete.
+
+### Log In & Sign Up(Peiyao Li)
+<img src="https://drive.google.com/uc?export=view&id=1Ue7BaRX9FkObimQ3qTu8lSlFGvIc0vkG"  style="height:30%; width:30%" >
+<img src="https://drive.google.com/uc?export=view&id=1chrcKkG8ZAVzjCyp12GXUX2Dzr0uffVU"  style="height:30%; width:30%" >
+- Implement user authentication using Firebase Authentication. Sign up for new users. Login and logout for existing users.

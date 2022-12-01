@@ -70,7 +70,7 @@ export default function MyProfile () {
 
         <View style={styles.userInfoWrapper}>
           <View style={styles.userInfoItem}>
-          <Text style={styles.userInfoTitle}>5</Text>
+          <Text style={styles.userInfoTitle}>1</Text>
             <Text style={styles.userInfoSubTitle}>Posts</Text>
           </View>
           <View style={styles.userInfoItem}>
