@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 // import { styles }  from "./styles";
-import {InteractionWrapper, Interaction, InteractionText, UserImg, UserInfo, UserInfoText, UserName} from "./FeedStyles";
+import {DelButton, InteractionWrapper, Interaction, InteractionText, UserImg, UserInfo, UserInfoText, UserName} from "./FeedStyles";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { auth } from "../Firebase/firebase-setup";
 import DeleteButton from "./DeleteButton";
@@ -43,35 +43,34 @@ export default function ClothItem({ cloth, onDelete, showResult}) {
             </View>
 
             <View style={styles.innercontainer}>
-            {/* <Text style={styles.itemTop}>
+                {showResult == false? (
+                <Text style={styles.itemTop}>
                     Top 1
-                </Text> */}
+                </Text>
+                ) : null}
                 <Text style={styles.itemTitle}>
                     {cloth.title}
                 </Text>
+                    <UserInfo>
+                    <UserImg
+                    source={{
+                        uri:'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg',
+                    }}
+                    />
+                    <UserInfoText>
+                        <UserName>Test User</UserName>
+                    </UserInfoText>
+                    <Interaction>
+                        <Ionicons name={likeIcon} size={25} color={likeIconColor} />
+                        <InteractionText>10</InteractionText>
+                    </Interaction>
+                    <DelButton>
+                        {auth.currentUser.uid == cloth.user && showResult == true? (
+                        <DeleteButton onDeletePressed={deletePressed}/>
+                    ) : null}
+                    </DelButton>
+                </UserInfo>
             </View>
-
-            <UserInfo>
-                <UserImg
-                source={{
-                    uri:'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg',
-                }}
-                />
-                <UserInfoText>
-                    <UserName>Test User</UserName>
-                </UserInfoText>
-            </UserInfo>
-
-            <InteractionWrapper>
-                <Interaction>
-                <Ionicons name={likeIcon} size={25} color={likeIconColor} />
-                <InteractionText>10</InteractionText>
-                </Interaction>
-                
-                {auth.currentUser.uid == cloth.user && showResult == true? (
-                <DeleteButton onDeletePressed={deletePressed}/>
-                ) : null}
-            </InteractionWrapper>
         </View>
     );
 }
@@ -100,7 +99,5 @@ const styles = StyleSheet.create({
     tinyLogo: {
         width: 120,
         height: 120,
-    },
+    }
 });
-
-

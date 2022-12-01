@@ -15,32 +15,30 @@ export const Card = styled.View`
 
 export const UserInfo = styled.View`
     flex-direction: row;
-    justify-content:center;
-    padding: 5px;
+    margin-top: 70px;
 `;
 
 export const UserImg = styled.Image`
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 25px;
 `;
 
 export const UserInfoText = styled.View`
     flex-direction: row;
-    justify-content: center;
-    margin-left: 10px;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-left: 5px;
 `;
 
 export const UserName = styled.Text`
     font-size: 14px;
-    font-weight: bold;
     font-family: 'Lato-Regular';
 `;
 
 export const InteractionWrapper = styled.View`
-    flex-direction: row;
     justify-content: space-around;
-    padding: 15px;
+    padding-left: 110px;
 `;
 
 export const Interaction = styled.TouchableOpacity`
@@ -54,8 +52,13 @@ export const Interaction = styled.TouchableOpacity`
 export const InteractionText = styled.Text`
     font-size: 12px;
     font-family: 'Lato-Regular';
-    font-weight: bold;
     color: ${props => props.active ? '#2e64e5' : '#333'};
     margin-top: 5px;
     margin-left: 5px;
+`;
+
+export const DelButton = styled.View`
+    position: 'absolute';
+    right: 25px;
+    bottom: 91px;
 `;

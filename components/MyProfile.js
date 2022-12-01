@@ -1,8 +1,6 @@
-import { auth } from "../Firebase/firebase-setup";
 import {signOut} from "firebase/auth";
-import { collection, onSnapshot } from 'firebase/firestore';
-import { firestore } from '../Firebase/firebase-setup';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { firestore, auth, storage } from '../Firebase/firebase-setup';
 import { deleteFromDB } from "../Firebase/firestore";
 // export default MyProfile = () =>
 //   <View style={styles.center}>
@@ -22,13 +20,16 @@ import {
   FlatList,
   Button
 } from 'react-native';
-import ClothItem from '../components/ClothItem';
+import ClothItem from './ClothItem';
 
-const MyProfile = () => {
+export default function MyProfile () {
   const [clothes, setClothes] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      collection(firestore, "clothes"),
+      query(
+        collection(firestore, "clothes"),
+        where("user", "==", auth.currentUser.uid)
+      ),
       (querySnapshot) => {
         if (querySnapshot.empty) {
           setClothes([]);
@@ -41,6 +42,9 @@ const MyProfile = () => {
             return data;
           })
         );
+      },
+      (err) => {
+        console.log(err);
       }
     );
     return () => {
@@ -56,10 +60,10 @@ const MyProfile = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
-        <Image
-          style={styles.userImg}
-          source={{uri: 'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg'}}
-        />
+          <Image
+            style={styles.userImg}
+            source={{uri: 'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg'}}
+          />
         <Text style={styles.userName}>User Name</Text>
         <Text>{auth.currentUser.uid}</Text>
         <Text>{auth.currentUser.email}</Text>
@@ -96,22 +100,21 @@ const MyProfile = () => {
       </FlatList>
     </SafeAreaView>
   );
-};
+}
 
-export default MyProfile;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     padding: 20,
     justifyContent: 'center', 
     alignItems: 'center'
   },
   userImg: {
-    height: 80,
-    width: 80,
+    height: 75,
+    width: 75,
     borderRadius: 75,
+    marginTop: 25,
   },
   userName: {
     fontSize: 18,
