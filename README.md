@@ -16,7 +16,8 @@ React Native | JavaScript | Firebase
 
 ## Iteration 1
 ### Add New(Zongyi Jiang)
-- This screen allows users to share information of their favorite clothes, including name, image, and content. Utilized Firebase to store the clothes information.
+- This screen allows users to share information of their favorite clothes, including title, image, and content. Utilized Firebase to store the clothes information.
+- Initialize the Firebase database
 
 ### Discover(Jing Luo)
 - Working in process.
@@ -33,6 +34,7 @@ React Native | JavaScript | Firebase
 <img src="https://drive.google.com/uc?export=view&id=1-UAkF4ztUqyMXTYmf8O_PBe1ueanGVvk"  style="height:30%; width:30%" >
 <img src="https://drive.google.com/uc?export=view&id=1g63dmGFYloduYtKpQaIngUpKf3GrQ9El"  style="height:30%; width:30%" >
 - Add new features such as tracking user's geographic location with Google Map, uploading an image from photos library and taking an image in a mobile app.
+- Initialize the location service using Google Cloud
 
 ### Discover(Jing Luo)
 <img src="https://drive.google.com/uc?export=view&id=1m50hsFLqLEiOVwVMijdkNRs9lKjQ9_Oz"  style="height:30%; width:30%" >
@@ -50,3 +52,12 @@ React Native | JavaScript | Firebase
 <img src="https://drive.google.com/uc?export=view&id=1Ue7BaRX9FkObimQ3qTu8lSlFGvIc0vkG"  style="height:30%; width:30%" >
 <img src="https://drive.google.com/uc?export=view&id=1chrcKkG8ZAVzjCyp12GXUX2Dzr0uffVU"  style="height:30%; width:30%" >
 - Implement user authentication using Firebase Authentication. Sign up for new users. Login and logout for existing users.
+
+## Iteration 3
+- Please refresh the page when image not loading
+
+### My Profile(Zongyi Jiang)
+- add Notification when pressing "Check Current Clothes Number" button, it will show the current number of clothes in database.
+
+### Add New(Zongyi Jiang)
+- add external api for each clothes, it allows user to upload a certain shopping website

@@ -9,6 +9,8 @@ export default function Login({ navigation }) {
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
       console.log(userCred);
+      // signInWithEmailAndPassword
+      Alert.alert("Welcome!");
     } catch (err) {
       Alert.alert(err.message);
       console.log(err.message);

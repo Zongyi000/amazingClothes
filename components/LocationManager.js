@@ -27,7 +27,7 @@ export default function LocationManager({locationHandler}) {
   // }, []);
   useEffect(() => {
     if (route.params) {
-      console.log(route.params);
+      // console.log(route.params);
       setLocation({
         latitude: route.params.currentLocation.latitude,
         longitude: route.params.currentLocation.longitude,

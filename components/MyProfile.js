@@ -2,6 +2,7 @@ import {signOut} from "firebase/auth";
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { firestore, auth, storage } from '../Firebase/firebase-setup';
 import { deleteFromDB } from "../Firebase/firestore";
+import NotificationManager from "./NotificationManager";
 // export default MyProfile = () =>
 //   <View style={styles.center}>
 //     {/* <Text style={styles.title}>MyProfile</Text> */}
@@ -84,6 +85,7 @@ export default function MyProfile () {
         </View>
       </View>
       <Button title="Logout" onPress={() => signOut(auth)} />
+      <NotificationManager clothes={clothes} />
       <FlatList 
         data={clothes?.filter(data => data?.user === auth.currentUser.uid)}
         renderItem = {({ item }) => {

@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 import { Pressable, ScrollView, View, Text, TextInput, Alert, Button } from "react-native";
 import { writeToDB } from '../Firebase/firestore'
 import { collection, onSnapshot } from 'firebase/firestore';
-import { firestore, storage } from '../Firebase/firebase-setup';
+import { firestore } from '../Firebase/firebase-setup';
 import ImageManager from "./ImageManager";
 import LocationManager from "./LocationManager";
 import { LogBox } from 'react-native';
 import  styles  from "./styles";
-import { ref, uploadBytes } from "firebase/storage";
 
 LogBox.ignoreAllLogs();
 
@@ -24,16 +23,16 @@ const AddNew = () => {
     const [clothes, setClothes] = useState([]);
 
     const photoHandler = (photoUri) => {
-        console.log("photoHandler called", photoUri);
+        // console.log("photoHandler called", photoUri);
         setPhotoUri(photoUri);
     };
 
     const imageHandler = (imageUri) => {
-        console.log("imageHandler called", imageUri);
+        // console.log("imageHandler called", imageUri);
         setImageUri(imageUri);
     };
     const locationHandler = (currentLocation) => {
-        console.log("locationHandler called", currentLocation);
+        // console.log("locationHandler called", currentLocation);
         setLocation(currentLocation);
     }
     
@@ -63,33 +62,9 @@ const AddNew = () => {
 
     const name = "add new"
 
-    const getImage = async (uri) => {
-        try {
-          const response = await fetch(uri);
-          const blob = await response.blob();
-          console.log(blob)
-          return blob;
-        } catch (err) {
-          console.log("fetch image ", err);
-        }
-      };
-
     const onAdd = async function (newClothesObj) {
-        const uri = newClothesObj.imageUri;
-        try {
-          if (uri) {
-            const imageBlob = await getImage(uri);
-            const imageName =  uri.substring(uri.lastIndexOf("/") + 1);
-            const imageRef =  ref(storage, `images/${imageName}`);
-            const uploadResult = await uploadBytes(imageRef, imageBlob);
-            newClothesObj.imageUri = uploadResult.metadata.fullPath; //replaced the uri with reference to the storage location
-          }
-          await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api});
-        } catch (err) {
-          console.log("image upload ", err);
-        }
         // await writeToDB({ description: newClothesObj.description, amount: newClothesObj.amount, important: newClothesObj.important });
-        // await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api});
+        await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api});
         // console.log("current clothes: ", clothes);
         // setModalVisible(false);
         // onChangeText("");
