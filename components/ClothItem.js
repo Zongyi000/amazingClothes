@@ -37,7 +37,7 @@ export default function ClothItem({ cloth, onDelete, showResult}) {
                 <Image 
                     style={styles.tinyLogo}
                     source={{
-                        uri: cloth.photoUri !== ""? cloth.photoUri : 'https://reactnative.dev/img/tiny_logo.png',
+                        uri: cloth.uri !== ""? cloth.uri : 'https://reactnative.dev/img/tiny_logo.png',
                     }}
                 />
             </View>
