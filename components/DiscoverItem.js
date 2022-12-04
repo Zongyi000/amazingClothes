@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -11,19 +11,39 @@ import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer'
 import { useNavigation } from "@react-navigation/native";
 import { addLikesToDB } from '../Firebase/firestore';
 import { addDislikesToDB } from '../Firebase/firestore';
+import { getStorage } from "firebase/storage";
+import { getDownloadURL, ref } from "firebase/storage";
+import { storage } from "../Firebase/firebase-setup";
 
 function DiscoverItem({ cloth }) {
-    const cur = cloth;
-    console.log(cur.key)
-    console.log(cur)
+    const cur = cloth.imageUri;
     const navigation = useNavigation();
+
+    const [imageURL, setImageURL] = useState("");
+    useEffect(() => {
+        const getImageURL = async () => {
+          try {
+            if (cur){
+              const imageName = cur.substring(cur.lastIndexOf("/") + 1);
+              const reference = ref(storage, `images/${imageName}`);
+              await getDownloadURL(reference).then((x) => {
+                setImageURL(x);
+              })
+            }
+          } catch (err) {
+            console.log("download image ", err);
+          }
+        };
+        getImageURL();
+      }, []);
+
 
     return (
         <View style={styles.card}>
             <View style={styles.cardHearder}>
                 <View style = {styles.headerLeft}>
                     <Image style = {styles.userImage}
-                    source = {{uri:cloth.uri}}
+                    source = {{imageUri:cloth.imageUri}}
                     />
                     <Text>Poster'name</Text>
                 </View>
@@ -35,7 +55,7 @@ function DiscoverItem({ cloth }) {
             <Image 
                 style={styles.tinyLogo}
                 source={{
-                    uri: cloth.uri !== ""? cloth.uri : 'https://reactnative.dev/img/tiny_logo.png',
+                    uri: imageURL !== ""? imageURL : 'https://reactnative.dev/img/tiny_logo.png',
                 }}
             />
 
