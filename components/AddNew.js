@@ -62,7 +62,16 @@ const AddNew = () => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const name = "add new"
-
+    const getImage = async (uri) => {
+        try {
+          const response = await fetch(uri);
+          const blob = await response.blob();
+          console.log(blob)
+          return blob;
+        } catch (err) {
+          console.log("fetch image ", err);
+        }
+      };
     const onAdd = async function (newClothesObj) {
          const uri = newClothesObj.imageUri;
         try {
