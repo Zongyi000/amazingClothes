@@ -41,8 +41,8 @@ function DiscoverItem({ cloth }) {
       }, []);
 
       console.log(imageURL);
-      const username = "cloth.user";
-      const clothname = "cloth.title";
+      const username = cloth.user;
+      const clothname = cloth.title;
     return (
       <View style={styles.card}>
         <ImageBackground
