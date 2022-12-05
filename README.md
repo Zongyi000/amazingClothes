@@ -61,3 +61,6 @@ React Native | JavaScript | Firebase
 
 ### Add New(Zongyi Jiang)
 - add external api for each clothes, it allows user to upload a certain shopping website
+
+### Top 10 (Peiyao Li)
+- add top sorting, user info and like amount on top 10 clothes
