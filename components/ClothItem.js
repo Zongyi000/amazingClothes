@@ -5,8 +5,30 @@ import {DelButton, InteractionWrapper, Interaction, InteractionText, UserImg, Us
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { auth } from "../Firebase/firebase-setup";
 import DeleteButton from "./DeleteButton";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
+    const cur = cloth.imageUri;
+    const navigation = useNavigation();
+
+    const [imageURL, setImageURL] = useState("");
+    useEffect(() => {
+        const getImageURL = async () => {
+          try {
+            if (cur){
+              const imageName = cur.substring(cur.lastIndexOf("/") + 1);
+              const reference = ref(storage, `images/${imageName}`);
+              await getDownloadURL(reference).then((x) => {
+                setImageURL(x);
+              })
+            }
+          } catch (err) {
+            console.log("download image ", err);
+          }
+        };
+        getImageURL();
+      }, []);
+
 
     likeIcon = 'heart' ;
     likeIconColor = '#2e64e5';
