@@ -42,7 +42,7 @@ export default function Top10BestSeller () {
                   }).slice(0,10)} 
                   maxToRenderPerBatch = {10}
                   ItemSeparatorComponent={this.FlatListItemSeparator}
-                  // keyExtractor={(item, index) => index}
+                  keyExtractor = {item=>item.id}
                   renderItem = {({ item, index }) => {
                       return (
                           <ClothItem

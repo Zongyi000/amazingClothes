@@ -59,11 +59,11 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
                     }}
                     />
                     <UserInfoText>
-                        <UserName>Test User</UserName>
+                        <UserName>{cloth.userName == null ? ('anonymous') : cloth.userName}</UserName>
                     </UserInfoText>
                     <Interaction>
                         <Ionicons name={likeIcon} size={25} color={likeIconColor} />
-                        <InteractionText>10</InteractionText>
+                        <InteractionText>{cloth.likes - cloth.dislikes}</InteractionText>
                     </Interaction>
                     <DelButton>
                         {auth.currentUser.uid == cloth.user && showResult == true? (

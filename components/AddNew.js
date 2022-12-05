@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Pressable, ScrollView, View, Text, TextInput, Alert, Button } from "react-native";
 import { writeToDB } from '../Firebase/firestore'
 import { collection, onSnapshot } from 'firebase/firestore';
-import { firestore, storage } from '../Firebase/firebase-setup';
+import { firestore, storage, auth } from '../Firebase/firebase-setup';
 import ImageManager from "./ImageManager";
 import LocationManager from "./LocationManager";
 import { LogBox } from 'react-native';
@@ -62,6 +62,9 @@ const AddNew = () => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const name = "add new"
+    const email = auth.currentUser.email;
+    const userName = email.match(/^([^@]*)@/)[1];
+  
     const getImage = async (uri) => {
         try {
           const response = await fetch(uri);
@@ -82,7 +85,7 @@ const AddNew = () => {
             const uploadResult = await uploadBytes(imageRef, imageBlob);
             newClothesObj.imageUri = uploadResult.metadata.fullPath; //replaced the uri with reference to the storage location
           }
-          await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api});
+          await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api, userName: newClothesObj.userName});
         } catch (err) {
           console.log("image upload ", err);
         }
@@ -141,7 +144,7 @@ const AddNew = () => {
                 <Pressable
                     onPress={() => {
                         //location wqaiting for the next week......
-                        const newClothesObj = {title: text, photoUri: photoUri, imageUri: imageUri, content: content, location: location, likes: 0, dislikes: 0, api: api};
+                        const newClothesObj = {title: text, photoUri: photoUri, imageUri: imageUri, content: content, location: location, likes: 0, dislikes: 0, api: api, userName: userName};
                         onAdd(newClothesObj);
                         // navigation.goBack();
                         // navigation.navigate('Home');

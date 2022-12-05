@@ -22,6 +22,7 @@ import {
   Button
 } from 'react-native';
 import ClothItem from './ClothItem';
+import { ScrollView } from "react-native-web";
 
 export default function MyProfile () {
   const [clothes, setClothes] = useState([]);
@@ -58,6 +59,9 @@ export default function MyProfile () {
     await deleteFromDB(deletedKey);
   }
 
+  const email = auth.currentUser.email;
+  const currentName = email.match(/^([^@]*)@/)[1];
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
@@ -65,10 +69,7 @@ export default function MyProfile () {
             style={styles.userImg}
             source={{uri: 'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg'}}
           />
-        <Text style={styles.userName}>User Name</Text>
-        <Text>{auth.currentUser.uid}</Text>
-        <Text>{auth.currentUser.email}</Text>
-
+        <Text style={styles.userName}>{currentName}</Text>
         <View style={styles.userInfoWrapper}>
           <View style={styles.userInfoItem}>
           <Text style={styles.userInfoTitle}>1</Text>
@@ -88,6 +89,7 @@ export default function MyProfile () {
       <NotificationManager clothes={clothes} />
       <FlatList 
         data={clothes?.filter(data => data?.user === auth.currentUser.uid)}
+        keyExtractor = {item=>item.id}
         renderItem = {({ item }) => {
           return (
             <ClothItem
@@ -100,7 +102,7 @@ export default function MyProfile () {
         // contentContainerStyle={styles.scrollViewItems}
       >
       </FlatList>
-    </SafeAreaView>
+      </SafeAreaView>
   );
 }
 
