@@ -41,7 +41,6 @@ function DiscoverItem({ cloth }) {
       }, []);
 
       console.log(imageURL);
-      const username = cloth.user;
       const clothname = cloth.title;
     return (
       <View style={styles.card}>
@@ -57,7 +56,7 @@ function DiscoverItem({ cloth }) {
             <Text style={styles.titleStyle}>{clothname}</Text>
             <View style={styles.centerContentStyle}>
               <FontAwesomeIcon icon={faMugSaucer} />
-              <Text style={styles.TextStyle}>Posted by {username}</Text>
+              <Text style={styles.TextStyle}>Posted by {cloth.userName == null ? ('anonymous') : cloth.userName}</Text>
             </View>
           </View>
   
