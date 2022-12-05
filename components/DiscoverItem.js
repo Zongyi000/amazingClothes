@@ -55,14 +55,13 @@ function DiscoverItem({ cloth }) {
             <Image 
                 style={styles.tinyLogo}
                 source={{
-                    uri: imageURL !== ""? imageURL : 'https://reactnative.dev/img/tiny_logo.png',
+                    uri: cloth.imageUri !== ""? cloth.imageUri : 'https://reactnative.dev/img/tiny_logo.png',
                 }}
             />
 
             <View style = {styles.cardFooter}>
                 <View style = {styles.cardFooterLeft}>
-                    <View style = {{flexDirection: "row",}}>
-    
+                    <View style = {{flexDirection: "row"}}>
                         <Button title="Like"  onPress={async ()=>{
                             await addLikesToDB(cloth);
                             }}/>

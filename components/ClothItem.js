@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { auth } from "../Firebase/firebase-setup";
 import DeleteButton from "./DeleteButton";
 
-export default function ClothItem({ cloth, onDelete, showResult}) {
+export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
 
     likeIcon = 'heart' ;
     likeIconColor = '#2e64e5';
@@ -30,6 +30,7 @@ export default function ClothItem({ cloth, onDelete, showResult}) {
     function deletePressed() {
         onDelete(cloth.key);
     }
+    const index = indexKeyId + 1;
 
     return (
         <View style={styles.container}>
@@ -45,7 +46,7 @@ export default function ClothItem({ cloth, onDelete, showResult}) {
             <View style={styles.innercontainer}>
                 {showResult == false? (
                 <Text style={styles.itemTop}>
-                    Top 1
+                    {'Top ' + index}
                 </Text>
                 ) : null}
                 <Text style={styles.itemTitle}>

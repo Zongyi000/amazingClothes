@@ -49,7 +49,7 @@ export default function Discover() {
 
         <FlatList
           data={clothes}
-          renderItem={({ item}) => {
+          renderItem={({ item }) => {
             return (
               <DiscoverItem cloth={item} />
             );

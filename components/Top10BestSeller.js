@@ -35,17 +35,24 @@ export default function Top10BestSeller () {
       <SafeAreaView>
          <View >
               <FlatList 
-                  data={clothes}
-                  // style={styles.container}
-                  renderItem = {({ item }) => {
+                  data={clothes.sort((a,b) => {
+                    const aNum = a.likes - a.dislikes;
+                    const bNum = b.likes - b.dislikes;
+                    return bNum - aNum;
+                  }).slice(0,10)} 
+                  maxToRenderPerBatch = {10}
+                  ItemSeparatorComponent={this.FlatListItemSeparator}
+                  // keyExtractor={(item, index) => index}
+                  renderItem = {({ item, index }) => {
                       return (
                           <ClothItem
                               cloth={item}
+                              onDelete={null}
                               showResult={false}
+                              indexKeyId={index}
                           />
                       );
                   }}
-                  // contentContainerStyle={styles.scrollViewItems}
               >
               </FlatList>
           </View>
