@@ -6,6 +6,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { auth } from "../Firebase/firebase-setup";
 import DeleteButton from "./DeleteButton";
 import { useNavigation } from "@react-navigation/native";
+import { getStorage } from "firebase/storage";
+import { getDownloadURL, ref } from "firebase/storage";
+import { storage } from "../Firebase/firebase-setup";
 
 export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
     const cur = cloth.imageUri;
@@ -60,7 +63,7 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
                 <Image 
                     style={styles.tinyLogo}
                     source={{
-                        uri: cloth.imageUri !== ""? cloth.imageUri : 'https://reactnative.dev/img/tiny_logo.png',
+                        uri: imageURL !== ""? imageURL : 'https://reactnative.dev/img/tiny_logo.png',
                     }}
                 />
             </View>
