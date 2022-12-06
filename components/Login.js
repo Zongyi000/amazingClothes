@@ -8,7 +8,7 @@ export default function Login({ navigation }) {
   const handleLogin = async () => {
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
-      console.log(userCred);
+      // console.log(userCred);
       // signInWithEmailAndPassword
       Alert.alert("Welcome!");
     } catch (err) {

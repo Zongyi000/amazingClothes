@@ -48,7 +48,7 @@ export default function LocationManager({locationHandler}) {
         return;
       }
       const currentPosition = await Location.getCurrentPositionAsync();
-      console.log("current location:", currentPosition);
+      // console.log("current location:", currentPosition);
       setLocation({
         latitude: currentPosition.coords.latitude,
         longitude: currentPosition.coords.longitude,
@@ -68,7 +68,7 @@ export default function LocationManager({locationHandler}) {
   // };
   return (
     <View>
-      <Button title="Upload Your Location" onPress={locateUserHandler} />
+      <Button title="Share Your Location" onPress={locateUserHandler} />
       {/* <Button title="Let me pick on the map" onPress={locationPickerHandler} /> */}
 
       {location && (

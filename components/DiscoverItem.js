@@ -40,7 +40,7 @@ function DiscoverItem({ cloth }) {
         getImageURL();
       }, []);
 
-      console.log(imageURL);
+      // console.log(imageURL);
       const clothname = cloth.title;
     return (
       <View style={styles.card}>

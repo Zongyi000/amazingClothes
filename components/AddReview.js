@@ -21,14 +21,14 @@ LogBox.ignoreAllLogs();
 
 const AddReview = ({ route }) => {
   const cur = route.params.cloth.key;
-  console.log(cur);
+  // console.log(cur);
 
   const [text, onChangeText] = useState("");
   const [content, onChangeContent] = useState("");
   const [uri, setUri] = useState("");
   const [clothes, setClothes] = useState([]);
   const imageHandler = (uri) => {
-    console.log("imageHandler called", uri);
+    // console.log("imageHandler called", uri);
     setUri(uri);
   };
 

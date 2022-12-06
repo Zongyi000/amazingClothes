@@ -55,25 +55,25 @@ export default function ImageManager({ photoHandler, imageHandler }) {
 
   return (
     <View>
-      <Button title="Take a Photo" onPress={takePhotoHandler} />
+      <Button title="Take a photo" onPress={takePhotoHandler} />
       {photoUri ? (
         <View>
             <Image source={{ uri: photoUri }} style={{ width: 200, height: 200 }} />
             <Button title="Delete" onPress={() => {setPhotoUri("")}} />
         </View>
       ) : (
-        <Text> No image yet! Please take a photo using your camera...</Text>
+        <Text style = {styles.addNewPlaceholder}> No image yet! Please take a photo using your camera...</Text>
       )}
 
 
-      <Button title="Upload New Image" onPress={uploadImageHandler} />
+      <Button title="Upload an image" onPress={uploadImageHandler} />
       {imageUri ? (
         <View>
             <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
             <Button title="Delete" onPress={() => {setImageUri("")}} />
         </View>
       ) : (
-        <Text> No image yet! Please upload a photo from your library...</Text>
+        <Text style = {styles.addNewPlaceholder}> No image yet! Please upload a photo from your library...</Text>
       )}
       
     </View>

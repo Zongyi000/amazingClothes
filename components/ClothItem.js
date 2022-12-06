@@ -12,7 +12,7 @@ import { storage } from "../Firebase/firebase-setup";
 
 export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
     const cur = cloth.imageUri;
-    console.log(cloth.title)
+    // console.log(cloth.title)
     const navigation = useNavigation();
 
     const [imageURL, setImageURL] = useState("");
@@ -33,7 +33,7 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
         getImageURL();
       }, []);
 
-    console.log(imageURL)
+    // console.log(imageURL)
     likeIcon = 'heart' ;
     likeIconColor = '#2e64e5';
 

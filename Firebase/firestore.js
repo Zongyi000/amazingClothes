@@ -37,7 +37,7 @@ export async function addLikesToDB(cur) {
       { likes: 1 + num },
       { merge: true }
     );
-    console.log("add likes ok")
+    // console.log("add likes ok")
   } catch (err) {
     console.log(err);
   }
@@ -51,7 +51,7 @@ export async function addDislikesToDB(cur) {
       { dislikes: 1 + num },
       { merge: true }
     );
-    console.log("add dilikes ok")
+    // console.log("add dilikes ok")
   } catch (err) {
     console.log(err);
   }
@@ -63,7 +63,7 @@ export async function addreviewToDB(review) {
       ...review,
       user: auth.currentUser.uid,
     });
-    console.log("add reviw ok")
+    // console.log("add review ok")
   } catch (err) {
     console.log(err);
   }

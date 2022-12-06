@@ -55,7 +55,7 @@ export default function MyProfile () {
   }, []);
 
   async function onDelete(deletedKey) {
-    console.log("delete pressed ", deletedKey);
+    // console.log("delete pressed ", deletedKey);
     await deleteFromDB(deletedKey);
   }
 

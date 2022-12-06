@@ -69,7 +69,7 @@ const AddNew = () => {
         try {
           const response = await fetch(uri);
           const blob = await response.blob();
-          console.log(blob)
+        //   console.log(blob)
           return blob;
         } catch (err) {
           console.log("fetch image ", err);
@@ -100,7 +100,7 @@ const AddNew = () => {
     return (
         <ScrollView style = {styles.addNew}>
             <View style = {styles.addNewTitle}>
-                <Text>
+                <Text style = {styles.addNewTitle}>
                     Title
                 </Text>
                 <TextInput
@@ -116,27 +116,27 @@ const AddNew = () => {
             </View>
 
             <View style = {styles.addNewContent}>
-                <Text>
+                <Text style = {styles.addNewTitle}>
                     Content
                 </Text>
                 <TextInput
                     value = {content}
                     onChangeText={(newContent) => {onChangeContent(newContent)}}
-                    placeholder="Enter the information about this item!"
+                    placeholder="Enter the information about this item..."
                 />
             </View>
-            <View>
+            <View style = {styles.addNewLocation} >
                 <LocationManager locationHandler={locationHandler}/>
             </View>
 
             <View style = {styles.addNewTitle}>
-                <Text>
-                    Upload Shopping Link
+                <Text style = {styles.addNewTitle}>
+                    Shopping Link
                 </Text>
                 <TextInput
                     value = {api}
                     onChangeText={(newApi) => {onChangeApi(newApi)}}
-                    placeholder="THIS IS THE EXTERNAL API OF THE CLOTHES!"
+                    placeholder="Upload a EXTERNAL API / shopping website..."
                 />
             </View>
 

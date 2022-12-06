@@ -22,7 +22,7 @@ export default function Signup({ navigation }) {
         email,
         password
       );
-      console.log(userCred);
+      // console.log(userCred);
     } catch (err) {
       console.log(err);
     }
