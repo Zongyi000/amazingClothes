@@ -20,8 +20,8 @@ React Native | JavaScript | Firebase
 - Initialize the Firebase database
 
 ### Discover(Jing Luo)
+- This screen shows beautiful pictures from users, Using useEffect, Firestore storage, Icons 
 - Working in process.
-
 ### Top 10(Peiyao Li)
 - Top 10 provides a content-based recommendation system based on user's favorite records. Working in progress.
 
@@ -41,7 +41,7 @@ React Native | JavaScript | Firebase
 - Add new features like searching specific clothes from database, voting like or dislike for further recommendations, adding reviews to the products.
 
 ### Top 10(Peiyao Li)
-<img src="https://drive.google.com/uc?export=view&id=1u7SnwK8QkDQ5qBwXPBHcgLsXhOR5FuPJ"  style="height:30%; width:30%" >
+<img src="![2387cb9f2454d26f62720650a13cf40](https://user-images.githubusercontent.com/78027883/205567358-12a88229-bc98-41c3-adc8-d17e5814c818.jpg)"  style="height:30%; width:30%" >
 - Working in progress.
 
 ### My Profile(Peiyao Li)
