@@ -7,7 +7,7 @@ import { firestore, storage, auth } from '../Firebase/firebase-setup';
 import ImageManager from "./ImageManager";
 import LocationManager from "./LocationManager";
 import { LogBox } from 'react-native';
-import  styles  from "./styles";
+import styles from "../styles/styles";
 import { ref, uploadBytes } from "firebase/storage";
 
 LogBox.ignoreAllLogs();
@@ -19,21 +19,16 @@ const AddNew = () => {
     const [photoUri, setPhotoUri] = useState("");
     const [location, setLocation] = useState('');
     const [api, onChangeApi] = useState("");
-    // const [likes, onChangeLikes] = useState("");
-    // const [dislikes, onChangeDislikes] = useState("");
     const [clothes, setClothes] = useState([]);
 
     const photoHandler = (photoUri) => {
-        // console.log("photoHandler called", photoUri);
         setPhotoUri(photoUri);
     };
 
     const imageHandler = (imageUri) => {
-        // console.log("imageHandler called", imageUri);
         setImageUri(imageUri);
     };
     const locationHandler = (currentLocation) => {
-        // console.log("locationHandler called", currentLocation);
         setLocation(currentLocation);
     }
     
@@ -69,7 +64,6 @@ const AddNew = () => {
         try {
           const response = await fetch(uri);
           const blob = await response.blob();
-        //   console.log(blob)
           return blob;
         } catch (err) {
           console.log("fetch image ", err);
@@ -89,12 +83,6 @@ const AddNew = () => {
         } catch (err) {
           console.log("image upload ", err);
         }
-        // await writeToDB({ description: newClothesObj.description, amount: newClothesObj.amount, important: newClothesObj.important });
-//         await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api});
-        // console.log("current clothes: ", clothes);
-        // setModalVisible(false);
-        // onChangeText("");
-        // onChangeContent("");
     };
 
     return (
@@ -143,12 +131,8 @@ const AddNew = () => {
             <View style = {styles.addNewTitle}>
                 <Pressable
                     onPress={() => {
-                        //location wqaiting for the next week......
                         const newClothesObj = {title: text, photoUri: photoUri, imageUri: imageUri, content: content, location: location, likes: 0, dislikes: 0, api: api, userName: userName};
                         onAdd(newClothesObj);
-                        // navigation.goBack();
-                        // navigation.navigate('Home');
-                        // console.log("confirm add!");
                         Alert.alert("New Item added successfully!");
                     }}
                     disabled={text.length? false: true}

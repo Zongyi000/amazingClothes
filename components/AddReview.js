@@ -16,13 +16,11 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { firestore } from "../Firebase/firebase-setup";
 import ImageManager from "./ImageManager";
 import { LogBox } from "react-native";
-import styles from "./styles";
+import styles from "../styles/styles";
 LogBox.ignoreAllLogs();
 
 const AddReview = ({ route }) => {
   const cur = route.params.cloth.key;
-  // console.log(cur);
-
   const [text, onChangeText] = useState("");
   const [content, onChangeContent] = useState("");
   const [uri, setUri] = useState("");
