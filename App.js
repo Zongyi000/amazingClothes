@@ -13,6 +13,7 @@ import Discover from "./components/Discover";
 import MyProfile from "./components/MyProfile";
 import Top10BestSeller from "./components/Top10BestSeller";
 import AddReview from "./components/AddReview";
+import ReviewScreen from "./components/ReviewScreen";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Login from "./components/Login";
 import Signup from "./components/Signup";

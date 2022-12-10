@@ -11,6 +11,8 @@ import {
   SafeAreaView,
   FlatList,
 } from 'react-native';
+import Ionicons from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/EvilIcons";
 
 export default function ReviewScreen ({route}) {
   const cloth = route.params.cloth;
@@ -73,15 +75,22 @@ export default function ReviewScreen ({route}) {
         <View style={styles.userInfoWrapper}>
           <View style={styles.userInfoItem}>
           <Text style={styles.userInfoTitle}>{cloth.title}</Text>
-            <Text style={styles.userInfoSubTitle}>Posts</Text>
           </View>
           <View style={styles.userInfoItem}>
             <Text style={styles.userInfoTitle}>{cloth.likes}</Text>
-            <Text style={styles.userInfoSubTitle}>Likes</Text>
+            <Ionicons.Button
+                  name = "heart-outline"
+                  size = "20"
+                  color = "red"
+                /> 
           </View>
           <View style={styles.userInfoItem}>
             <Text style={styles.userInfoTitle}>{cloth.dislikes}</Text>
-            <Text style={styles.userInfoSubTitle}>Dislikes</Text>
+            <Ionicons.Button
+                  name="heart-dislike-outline"
+                  size = "20"
+                  color = "black"
+                />
           </View>
         </View>
         <Text style={styles.userInfoTitle}>Reviews</Text>

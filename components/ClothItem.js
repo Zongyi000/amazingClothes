@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image,Pressable } from "react-native";
 // import { styles }  from "./styles";
 import {DelButton, InteractionWrapper, Interaction, InteractionText, UserImg, UserInfo, UserInfoText, UserName} from "./FeedStyles";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -59,6 +59,12 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
     const index = indexKeyId + 1;
 
     return (
+        <Pressable onPress={() => {
+        
+            navigation.navigate("ReviewScreen",{cloth});
+          }}
+          android_ripple={{ color: "black", foreground: true }}
+          >
         <View style={styles.container}>
             <View style={styles.innercontainer}>
                 <Image 
@@ -99,6 +105,7 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
                 </UserInfo>
             </View>
         </View>
+        </Pressable>
     );
 }
 
