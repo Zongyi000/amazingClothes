@@ -150,6 +150,14 @@ export default function App() {
           headerTitleAlign: "center",
         }}
       />
+
+      <Stack.Screen
+        name="ReviewScreen"
+        component={ReviewScreen}
+        options={{
+          headerTitleAlign: "center",
+        }}
+      />
     </Stack.Navigator>
     );
   };
