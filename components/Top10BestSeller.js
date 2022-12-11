@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {  View, FlatList, StyleSheet } from 'react-native';
+import {  View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ClothItem from './ClothItem';
 import { collection, onSnapshot } from 'firebase/firestore';

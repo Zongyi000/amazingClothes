@@ -1,7 +1,7 @@
 import { View, Image, Text, Button } from "react-native";
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import  styles  from "./styles";
+import  styles  from "../styles/styles";
 
 export default function ImageManager({ photoHandler, imageHandler }) {
   const [permissionInfo, requestPermisson] = ImagePicker.useCameraPermissions();

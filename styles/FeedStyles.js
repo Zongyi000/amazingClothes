@@ -36,11 +36,6 @@ export const UserName = styled.Text`
   
 `;
 
-export const InteractionWrapper = styled.View`
-    justify-content: space-around;
-    padding-left: 110px;
-`;
-
 export const Interaction = styled.TouchableOpacity`
     flex-direction: row;
     justify-content: center;
