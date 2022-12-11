@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { View, Text, StyleSheet, Image,Pressable } from "react-native";
-// import { styles }  from "./styles";
-import {DelButton, InteractionWrapper, Interaction, InteractionText, UserImg, UserInfo, UserInfoText, UserName} from "./FeedStyles";
+import {DelButton, Interaction, InteractionText, UserImg, UserInfo, UserInfoText, UserName} from "../styles/FeedStyles";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { auth } from "../Firebase/firebase-setup";
 import DeleteButton from "./DeleteButton";
@@ -9,10 +8,10 @@ import { useNavigation } from "@react-navigation/native";
 import { getStorage } from "firebase/storage";
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "../Firebase/firebase-setup";
+import styles from "../styles/styles";
 
 export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
     const cur = cloth.imageUri;
-    // console.log(cloth.title)
     const navigation = useNavigation();
 
     const [imageURL, setImageURL] = useState("");
@@ -20,7 +19,7 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
         const getImageURL = async () => {
           try {
             if (cur){
-              const imageName = cur.substring(cur.lastIndexOf("/") + 1);
+              const imageName = cur.substring(7,cur.length-4)+"_200x200.png";
               const reference = ref(storage, `images/${imageName}`);
               await getDownloadURL(reference).then((x) => {
                 setImageURL(x);
@@ -33,9 +32,8 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
         getImageURL();
       }, []);
 
-    // console.log(imageURL)
     likeIcon = 'heart' ;
-    likeIconColor = '#2e64e5';
+    likeIconColor = 'red';
 
     if (cloth.likes == 1) {
         likeText = '1 Like';
@@ -45,14 +43,6 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
         likeText = 'Like';
     }
 
-    // if (cloth.comments == 1) {
-    //     commentText = '1 Comment';
-    //   } else if (cloth.comments > 1) {
-    //     commentText = cloth.comments + ' Comments';
-    //   } else {
-    //     commentText = 'Comment';
-    //   }
-
     function deletePressed() {
         onDelete(cloth.key);
     }
@@ -60,12 +50,11 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
 
     return (
         <Pressable onPress={() => {
-        
             navigation.navigate("ReviewScreen",{cloth});
           }}
           android_ripple={{ color: "black", foreground: true }}
           >
-        <View style={styles.container}>
+        <View style={styles.clothContainer}>
             <View style={styles.innercontainer}>
                 <Image 
                     style={styles.tinyLogo}
@@ -87,7 +76,7 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
                     <UserInfo>
                     <UserImg
                     source={{
-                        uri:'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg',
+                        uri:'https://gravatar.com/avatar/78a296d008e5796f3f3e2d849819e9dc?s=400&d=mp&r=x',
                     }}
                     />
                     <UserInfoText>
@@ -108,30 +97,3 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
         </Pressable>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor:'#e5e5e5',
-        padding:15,
-        borderRadius:15,
-        margin:15,
-        marginHorizontal:25,
-        flexDirection: "row",
-    },
-    innercontainer: {
-        flex:1,
-    },
-    itemTop: {
-        color: 'red',
-        fontSize: 20,
-        fontWeight:'bold',
-    },
-    itemTitle: {
-        fontSize: 16,
-        fontWeight:'bold',
-    },
-    tinyLogo: {
-        width: 120,
-        height: 120,
-    }
-});

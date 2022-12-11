@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, Button } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import  styles  from "../styles/styles";
 
 export default function ({ route, navigation }) {
   const [currentLocation, setCurrentLocation] = useState(null);
-  //   console.log(route.params.initialLocation);
   const mapPressed = (event) => {
-    // console.log(event.nativeEvent.coordinte.latitude);
     setCurrentLocation({
       latitude: event.nativeEvent.coordinate.latitude,
       longitude: event.nativeEvent.coordinate.longitude,
@@ -42,10 +41,3 @@ export default function ({ route, navigation }) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  map: {
-    // flex: 1,
-    height: "80%",
-  },
-});
