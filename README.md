@@ -59,7 +59,7 @@ React Native | JavaScript | Firebase
 ### Viewscreen(Jing Luo)
 - Building a view screen showing all the comments and information of a specific cloth
 
-### Optimise images to improve UX
+### Optimise images to improve UX(Jing Luo)
 - Resizing images to optimise images and updating database 
 
 ### My Profile(Zongyi Jiang)
