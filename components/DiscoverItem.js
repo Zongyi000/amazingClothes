@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Pressable,
   ImageBackground,
+  Dimensions
 } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer'
@@ -25,7 +26,7 @@ function DiscoverItem({ cloth }) {
         const getImageURL = async () => {
           try {
             if (cur){
-              const imageName = cur.substring(cur.lastIndexOf("/") + 1);
+              const imageName = cur.substring(7,cur.length-4)+"_200x200.png";
               const reference = ref(storage, `images/${imageName}`);
               await getDownloadURL(reference).then((x) => {
                 setImageURL(x);
@@ -37,10 +38,11 @@ function DiscoverItem({ cloth }) {
         };
         getImageURL();
       }, []);
-
       const username = cloth.user;
       const clothname = cloth.title;
+      // console.log(imageURL)
     return (
+
       <Pressable onPress={() => {
         
         navigation.navigate("ReviewScreen",{cloth});
@@ -123,6 +125,8 @@ function DiscoverItem({ cloth }) {
     card: {
       flex: 1,
       backgroundColor: "#e9eeef",
+      width:Dimensions.get('window')[0],
+      heigth:Dimensions.get('window')[1]
     },
 
     cardFooter: {

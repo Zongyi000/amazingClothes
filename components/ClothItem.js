@@ -12,7 +12,6 @@ import { storage } from "../Firebase/firebase-setup";
 
 export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
     const cur = cloth.imageUri;
-    // console.log(cloth.title)
     const navigation = useNavigation();
 
     const [imageURL, setImageURL] = useState("");
@@ -20,7 +19,7 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
         const getImageURL = async () => {
           try {
             if (cur){
-              const imageName = cur.substring(cur.lastIndexOf("/") + 1);
+              const imageName = cur.substring(7,cur.length-4)+"_200x200.png";
               const reference = ref(storage, `images/${imageName}`);
               await getDownloadURL(reference).then((x) => {
                 setImageURL(x);
