@@ -44,6 +44,7 @@ export default function MyProfile () {
             return data;
           })
         );
+        console.log("clothes: ", clothes)
       },
       (err) => {
         console.log(err);
