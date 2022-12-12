@@ -19,7 +19,7 @@ export default function ClothItem({ cloth, onDelete, showResult, indexKeyId}) {
         const getImageURL = async () => {
           try {
             if (cur){
-              const imageName = cur.substring(7,cur.length-4)+"_200x200.png";
+              const imageName = cur.substring(7,cur.length-4)+"_200x200" + cur.substring(cur.length-4,cur.length);
               const reference = ref(storage, `images/${imageName}`);
               await getDownloadURL(reference).then((x) => {
                 setImageURL(x);

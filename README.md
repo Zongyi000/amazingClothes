@@ -56,6 +56,12 @@ React Native | JavaScript | Firebase
 ## Iteration 3
 - Please refresh the page when image not loading
 
+### Viewscreen(Jing Luo)
+- Building a view screen showing all the comments and information of a specific cloth
+
+### Optimise images to improve UX(Jing Luo)
+- Resizing images to optimise images and updating database 
+
 ### My Profile(Zongyi Jiang)
 - add Notification when pressing "Check Current Clothes Number" button, it will show the current number of clothes in database.
 
