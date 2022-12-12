@@ -70,7 +70,22 @@ const AddNew = () => {
         }
       };
     const onAdd = async function (newClothesObj) {
-        const uri = newClothesObj.imageUri == "" ? newClothesObj.photoUri:newClothesObj.imageUri;
+        const uri = newClothesObj.imageUri;
+        if (uri) {
+          try {
+            if (uri) {
+              const imageBlob = await getImage(uri);
+              const imageName =  uri.substring(uri.lastIndexOf("/") + 1);
+              const imageRef =  ref(storage, `images/${imageName}`);
+              const uploadResult = await uploadBytes(imageRef, imageBlob);
+              newClothesObj.imageUri = uploadResult.metadata.fullPath; //replaced the uri with reference to the storage location
+            }
+            await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api});
+          } catch (err) {
+            console.log("image upload ", err);
+          }
+      }else{
+        const uri = newClothesObj.photoUri;
         try {
           if (uri) {
             const imageBlob = await getImage(uri);
@@ -79,10 +94,11 @@ const AddNew = () => {
             const uploadResult = await uploadBytes(imageRef, imageBlob);
             newClothesObj.imageUri = uploadResult.metadata.fullPath; //replaced the uri with reference to the storage location
           }
-          await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api, userName: newClothesObj.userName});
+          await writeToDB({ title: newClothesObj.title, imageUri: newClothesObj.imageUri, photoUri: newClothesObj.photoUri, content: newClothesObj.content, location: newClothesObj.location, likes: newClothesObj.likes, dislikes: newClothesObj.dislikes, api: newClothesObj.api});
         } catch (err) {
           console.log("image upload ", err);
         }
+      }
     };
 
 
