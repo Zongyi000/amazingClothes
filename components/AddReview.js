@@ -1,19 +1,14 @@
 import { addreviewToDB } from "../Firebase/firestore";
-
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Pressable,
-  SafeAreaView,
+  ScrollView,
   View,
   Text,
   TextInput,
   Alert,
-  Button,
 } from "react-native";
-import { writeToDB } from "../Firebase/firestore";
-import { collection, onSnapshot } from "firebase/firestore";
-import { firestore } from "../Firebase/firebase-setup";
 import ImageManager from "./ImageManager";
 import { LogBox } from "react-native";
 import styles from "../styles/styles";
@@ -24,19 +19,16 @@ const AddReview = ({ route }) => {
   const [text, onChangeText] = useState("");
   const [content, onChangeContent] = useState("");
   const [uri, setUri] = useState("");
-  const [clothes, setClothes] = useState([]);
   const imageHandler = (uri) => {
-    // console.log("imageHandler called", uri);
     setUri(uri);
   };
 
   const onAdd = async function (cur) {
-    await addreviewToDB({cur
-    });
+    await addreviewToDB({ cur });
   };
 
   return (
-    <SafeAreaView style={styles.addNew}>
+    <ScrollView style={styles.addNew}>
       <View style={styles.addNewTitle}>
         <Text>Title</Text>
         <TextInput
@@ -44,7 +36,7 @@ const AddReview = ({ route }) => {
           onChangeText={(newText) => {
             onChangeText(newText);
           }}
-          placeholder="THIS FIT IS IN THE NAME! GOTTA HAVE IT!"
+          placeholder="Something important to share"
         />
       </View>
 
@@ -53,13 +45,13 @@ const AddReview = ({ route }) => {
       </View>
 
       <View style={styles.addNewContent}>
-        <Text>Content</Text>
+        <Text>Why you love it?</Text>
         <TextInput
           value={content}
           onChangeText={(newContent) => {
             onChangeContent(newContent);
           }}
-          placeholder="Enter the information about this item!"
+          placeholder="Enter the information about this lover!"
         />
       </View>
 
@@ -67,7 +59,7 @@ const AddReview = ({ route }) => {
         <Pressable
           onPress={() => {
             const review = {
-              toClothes:cur,
+              toClothes: cur,
               title: text,
               uri: uri,
               content: content,
@@ -80,7 +72,7 @@ const AddReview = ({ route }) => {
           <Text style={styles.blueButton}>Submit</Text>
         </Pressable>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 

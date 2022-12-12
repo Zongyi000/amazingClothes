@@ -14,6 +14,9 @@ React Native | JavaScript | Firebase
 - By reducing poor information, brands can produce effectively, reduce unsalable products, and reduce the cost of trial and error for fans, which is green and environmentally friendly.
 - Users can easily know the trendy clothes.
 
+## Demo
+- Demo: https://www.youtube.com/watch?v=1xm6WeXVX4w
+
 ## Iteration 1
 ### Add New(Zongyi Jiang)
 - This screen allows users to share information of their favorite clothes, including title, image, and content. Utilized Firebase to store the clothes information.
@@ -31,30 +34,29 @@ React Native | JavaScript | Firebase
 ## Iteration 2
 - Please refresh the page when image not loading
 ### Add New(Zongyi Jiang)
-<img src="https://drive.google.com/uc?export=view&id=1-UAkF4ztUqyMXTYmf8O_PBe1ueanGVvk"  style="height:30%; width:30%" >
-<img src="https://drive.google.com/uc?export=view&id=1g63dmGFYloduYtKpQaIngUpKf3GrQ9El"  style="height:30%; width:30%" >
+<!-- <img src="https://drive.google.com/uc?export=view&id=1-UAkF4ztUqyMXTYmf8O_PBe1ueanGVvk"  style="height:30%; width:30%" >
+<img src="https://drive.google.com/uc?export=view&id=1g63dmGFYloduYtKpQaIngUpKf3GrQ9El"  style="height:30%; width:30%" > -->
 - Add new features such as tracking user's geographic location with Google Map, uploading an image from photos library and taking an image in a mobile app.
 - Initialize the location service using Google Cloud
 
 ### Discover(Jing Luo)
-<img src="https://drive.google.com/uc?export=view&id=1m50hsFLqLEiOVwVMijdkNRs9lKjQ9_Oz"  style="height:30%; width:30%" >
+<!-- <img src="https://drive.google.com/uc?export=view&id=1m50hsFLqLEiOVwVMijdkNRs9lKjQ9_Oz"  style="height:30%; width:30%" > -->
 - Add new features like searching specific clothes from database, voting like or dislike for further recommendations, adding reviews to the products.
 
 ### Top 10(Peiyao Li)
-<img src="![2387cb9f2454d26f62720650a13cf40](https://user-images.githubusercontent.com/78027883/205567358-12a88229-bc98-41c3-adc8-d17e5814c818.jpg)"  style="height:30%; width:30%" >
+<!-- <img src="![2387cb9f2454d26f62720650a13cf40](https://user-images.githubusercontent.com/78027883/205567358-12a88229-bc98-41c3-adc8-d17e5814c818.jpg)"  style="height:30%; width:30%" > -->
 - Working in progress.
 
 ### My Profile(Peiyao Li)
-<img src="https://drive.google.com/uc?export=view&id=1KEYCkhNZJKy8Uhi0rWSz1Wqch1Pxn4k1"  style="height:30%; width:30%" >
+<!-- <img src="https://drive.google.com/uc?export=view&id=1KEYCkhNZJKy8Uhi0rWSz1Wqch1Pxn4k1"  style="height:30%; width:30%" > -->
 - Add new features like showing user's basical info, adding authorization to ensure that only a user who created a post is able to delete.
 
 ### Log In & Sign Up(Peiyao Li)
-<img src="https://drive.google.com/uc?export=view&id=1Ue7BaRX9FkObimQ3qTu8lSlFGvIc0vkG"  style="height:30%; width:30%" >
-<img src="https://drive.google.com/uc?export=view&id=1chrcKkG8ZAVzjCyp12GXUX2Dzr0uffVU"  style="height:30%; width:30%" >
+<!-- <img src="https://drive.google.com/uc?export=view&id=1Ue7BaRX9FkObimQ3qTu8lSlFGvIc0vkG"  style="height:30%; width:30%" >
+<img src="https://drive.google.com/uc?export=view&id=1chrcKkG8ZAVzjCyp12GXUX2Dzr0uffVU"  style="height:30%; width:30%" > -->
 - Implement user authentication using Firebase Authentication. Sign up for new users. Login and logout for existing users.
 
 ## Iteration 3
-- Please refresh the page when image not loading
 
 ### Viewscreen(Jing Luo)
 - Building a view screen showing all the comments and information of a specific cloth

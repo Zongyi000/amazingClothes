@@ -1,6 +1,8 @@
 import { View, StyleSheet, Pressable, Text } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
+import styles from "../styles/styles";
+
 export default function DeleteButton({ onDeletePressed }) {
   return (
     <Pressable
@@ -17,14 +19,3 @@ export default function DeleteButton({ onDeletePressed }) {
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    flex: 1,
-    fontSize: 18,
-    justifyContent: "center",
-  },
-  pressedItm: {
-    opacity: 0.5,
-    backgroundColor: "#222",
-  },
-});

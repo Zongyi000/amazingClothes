@@ -3,16 +3,16 @@ import { collection, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestor
 import { firestore, auth } from "./firebase-setup";
 
 export async function writeToDB(cloth) {
-    try {
-      const docRef = await addDoc(collection(firestore, "clothes"), {
-        ...cloth,
-        user: auth.currentUser.uid,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  try {
+    const docRef = await addDoc(collection(firestore, "clothes"), {
+      ...cloth,
+      user: auth.currentUser.uid,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
-  
+
 export async function deleteFromDB(key) {
   try {
     await deleteDoc(doc(firestore, "clothes", key));
@@ -63,7 +63,6 @@ export async function addreviewToDB(review) {
       ...review,
       user: auth.currentUser.uid,
     });
-    // console.log("add review ok")
   } catch (err) {
     console.log(err);
   }

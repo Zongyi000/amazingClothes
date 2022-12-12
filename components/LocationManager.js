@@ -1,12 +1,10 @@
-import { View, Image, Button, Alert } from "react-native";
+import { View, Image, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
-import { getCurrentPositionAsync } from "expo-location";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 
-export default function LocationManager({locationHandler}) {
+export default function LocationManager({ locationHandler }) {
   const MAPS_API_KEY = "AIzaSyB8mxKFHLwY25SqFnLipSU6_JW5L5e3jaU";
-  const navigation = useNavigation();
   const route = useRoute();
   const [permissionResponse, requestPermission] =
     Location.useForegroundPermissions();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Button } from "react-native";
 import MapView, { Marker } from "react-native-maps";
-import  styles  from "../styles/styles";
+import styles from "../styles/styles";
 
 export default function ({ route, navigation }) {
   const [currentLocation, setCurrentLocation] = useState(null);
