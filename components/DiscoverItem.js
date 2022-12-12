@@ -19,14 +19,14 @@ import Icon from "react-native-vector-icons/EvilIcons";
 // import { styles }  from "./styles";
 
 function DiscoverItem({ cloth }) {
-    const cur = cloth.imageUri;
+  const cur = cloth.imageUri;
     const navigation = useNavigation();
     const [imageURL, setImageURL] = useState("");
     useEffect(() => {
         const getImageURL = async () => {
           try {
             if (cur){
-              const imageName = cur.substring(7,cur.length-4)+"_200x200.png";
+              const imageName = cur.substring(7,cur.length-4)+"_200x200" + cur.substring(cur.length-4,cur.length);
               const reference = ref(storage, `images/${imageName}`);
               await getDownloadURL(reference).then((x) => {
                 setImageURL(x);

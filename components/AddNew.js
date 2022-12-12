@@ -70,7 +70,7 @@ const AddNew = () => {
         }
       };
     const onAdd = async function (newClothesObj) {
-         const uri = newClothesObj.imageUri;
+        const uri = newClothesObj.imageUri == "" ? newClothesObj.photoUri:newClothesObj.imageUri;
         try {
           if (uri) {
             const imageBlob = await getImage(uri);
@@ -84,6 +84,7 @@ const AddNew = () => {
           console.log("image upload ", err);
         }
     };
+
 
     return (
         <ScrollView style = {styles.addNew}>

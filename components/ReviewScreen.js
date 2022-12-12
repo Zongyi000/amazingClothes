@@ -16,6 +16,8 @@ import Icon from "react-native-vector-icons/EvilIcons";
 
 export default function ReviewScreen ({route}) {
   const cloth = route.params.cloth;
+  console.log(cloth.imageUri + "---imageURI")
+  console.log(cloth.photoUri)
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -44,13 +46,13 @@ export default function ReviewScreen ({route}) {
       unsubscribe();
     };
   }, []);
-  const cur = cloth.imageUri;
+  const cur = cloth.imageUri == null? cloth.photoUri:cloth.imageUri;
   const [imageURL, setImageURL] = useState("");
     useEffect(() => {
         const getImageURL = async () => {
           try {
             if (cur){
-              const imageName = cur.substring(7,cur.length-4)+"_200x200.png";
+              const imageName = cur.substring(7,cur.length-4)+"_200x200" + cur.substring(cur.length-4,cur.length);
               const reference = ref(storage, `images/${imageName}`);
               await getDownloadURL(reference).then((x) => {
                 setImageURL(x);
@@ -63,7 +65,6 @@ export default function ReviewScreen ({route}) {
         getImageURL();
       }, []);
 
-  // console.log(reviews)
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container }>

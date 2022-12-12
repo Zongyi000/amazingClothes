@@ -25,8 +25,8 @@ export default function ImageManager({ photoHandler, imageHandler }) {
       let takePhotoResult = await ImagePicker.launchCameraAsync({allowsEditing: true}); //this is to take a photo
 
       if (!takePhotoResult.canceled) {setPhotoUri(takePhotoResult.assets[0].uri)}
-      setPhotoUri(takePhotoResult.uri);
-      photoHandler(takePhotoResult.uri);
+      setPhotoUri(takePhotoResult.photoUri);
+      photoHandler(takePhotoResult.photoUri);
     } catch (err) {
       console.log("Image taking error ", err);
     }
@@ -46,8 +46,8 @@ export default function ImageManager({ photoHandler, imageHandler }) {
       });
 
       if (!uploadResult.canceled) {setImageUri(uploadResult.assets[0].uri)}
-      setImageUri(uploadResult.uri);
-      imageHandler(uploadResult.uri);
+      setImageUri(uploadResult.imageUri);
+      imageHandler(uploadResult.imageUri);
     } catch (err) {
       console.log("Image taking error ", err);
     }
