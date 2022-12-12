@@ -1,23 +1,20 @@
 
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
-import { firestore, auth, storage } from '../Firebase/firebase-setup';
-import React, {useState, useEffect} from 'react';
+import { firestore, storage } from '../Firebase/firebase-setup';
+import React, { useState, useEffect } from 'react';
 import { getDownloadURL, ref } from "firebase/storage";
 import {
   View,
   Text,
   Image,
-  StyleSheet,
   SafeAreaView,
   FlatList,
 } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Icon from "react-native-vector-icons/EvilIcons";
+import styles from '../styles/styles';
 
-export default function ReviewScreen ({route}) {
+export default function ReviewScreen({ route }) {
   const cloth = route.params.cloth;
-  console.log(cloth.imageUri + "---imageURI")
-  console.log(cloth.photoUri)
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -27,7 +24,7 @@ export default function ReviewScreen ({route}) {
       ),
       (querySnapshot) => {
         if (querySnapshot.empty) {
-            setReviews([]);
+          setReviews([]);
           return;
         }
         setReviews(
@@ -46,142 +43,69 @@ export default function ReviewScreen ({route}) {
       unsubscribe();
     };
   }, []);
-  const cur = cloth.imageUri == null? cloth.photoUri:cloth.imageUri;
+  const cur = cloth.imageUri == null ? cloth.photoUri : cloth.imageUri;
   const [imageURL, setImageURL] = useState("");
-    useEffect(() => {
-        const getImageURL = async () => {
-          try {
-            if (cur){
-              const imageName = cur.substring(7,cur.length-4)+"_200x200" + cur.substring(cur.length-4,cur.length);
-              const reference = ref(storage, `images/${imageName}`);
-              await getDownloadURL(reference).then((x) => {
-                setImageURL(x);
-              })
-            }
-          } catch (err) {
-            console.log("download image ", err);
-          }
-        };
-        getImageURL();
-      }, []);
+  useEffect(() => {
+    const getImageURL = async () => {
+      try {
+        if (cur) {
+          const imageName = cur.substring(7, cur.length - 4) + "_200x200" + cur.substring(cur.length - 4, cur.length);
+          const reference = ref(storage, `images/${imageName}`);
+          await getDownloadURL(reference).then((x) => {
+            setImageURL(x);
+          })
+        }
+      } catch (err) {
+        console.log("download image ", err);
+      }
+    };
+    getImageURL();
+  }, []);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container }>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
         <Image
-            style={styles.reviewImg}
-            source={{uri: imageURL !== ""? imageURL : 'https://reactnative.dev/img/tiny_logo.png',}}
+          style={styles.reviewImg}
+          source={{ uri: imageURL !== "" ? imageURL : 'https://reactnative.dev/img/tiny_logo.png', }}
         />
-        <View style={styles.userInfoWrapper}>
-          <View style={styles.userInfoItem}>
-          <Text style={styles.userInfoTitle}>{cloth.title}</Text>
+        <View style={styles.viewInfoWrapper}>
+          <View style={styles.viewInfoItem}>
+            <Text style={styles.viewInfoTitle}>{cloth.title}</Text>
           </View>
-          <View style={styles.userInfoItem}>
-            <Text style={styles.userInfoTitle}>{cloth.likes}</Text>
+          <View style={styles.viewInfoItem}>
+            <Text style={styles.viewInfoTitle}>{cloth.likes}</Text>
             <Ionicons.Button
-                  name = "heart-outline"
-                  size = "20"
-                  color = "red"
-                /> 
+              name="heart-outline"
+              size="20"
+              color="red"
+            />
           </View>
-          <View style={styles.userInfoItem}>
-            <Text style={styles.userInfoTitle}>{cloth.dislikes}</Text>
+          <View style={styles.viewInfoItem}>
+            <Text style={styles.viewInfoTitle}>{cloth.dislikes}</Text>
             <Ionicons.Button
-                  name="heart-dislike-outline"
-                  size = "20"
-                  color = "black"
-                />
+              name="heart-dislike-outline"
+              size="20"
+              color="black"
+            />
           </View>
         </View>
-        <Text style={styles.userInfoTitle}>Reviews</Text>
-        <FlatList 
-            data={reviews}
-            renderItem={({ item }) => {
+        <Text style={styles.viewInfoTitle}>Reviews</Text>
+        <FlatList
+          data={reviews}
+          renderItem={({ item }) => {
             return (
-                    <View>
-                        <Text style={styles.userInfoSubTitle}>Title: "{item.cur.title}" </Text>
-                        <Text style={styles.userInfoSubTitle}>Content: "{item.cur.content !== "" ? item.cur.content : null}". </Text>
-                        <Text style={styles.userInfoSubTitle}>--posted by {item.user[8]}{item.user[9]}{item.user[10]}</Text>
-                    </View>
+              <View>
+                <Text style={styles.viewInfoSubTitle}>Title: "{item.cur.title}" </Text>
+                <Text style={styles.viewInfoSubTitle}>Content: "{item.cur.content !== "" ? item.cur.content : null}". </Text>
+                <Text style={styles.viewInfoSubTitle}>--posted by {item.user[8]}{item.user[9]}{item.user[10]}</Text>
+              </View>
 
             );
-            }}
-            keyExtractor = {item=>item.id}
+          }}
+          keyExtractor={item => item.id}
         />
       </View>
-      </SafeAreaView>
+    </SafeAreaView>
   );
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center', 
-    alignItems: 'center'
-  },
-
-  titleStyle: {
-    fontSize: 28,
-    fontWeight: "bold",
-    textAlign: "center",
-    padding: 10,
-  },
-  reviewImg: {
-    height: 250,
-    width:250,
-    borderRadius: 45,
-    marginTop: 25,
-  },
-  userName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  aboutUser: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#666',
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  userBtnWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%',
-    marginBottom: 10,
-  },
-  userBtn: {
-    borderColor: '#2e64e5',
-    borderWidth: 2,
-    borderRadius: 3,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    marginHorizontal: 5,
-  },
-  userBtnTxt: {
-    color: '#2e64e5',
-  },
-  userInfoWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    marginVertical: 20,
-  },
-  userInfoItem: {
-    justifyContent: 'center',
-  },
-  userInfoTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    textAlign: 'center',
-  },
-  userInfoSubTitle: {
-    fontSize: 12,
-    color: '#666',
-    textAlign: 'center',
-  },
-});

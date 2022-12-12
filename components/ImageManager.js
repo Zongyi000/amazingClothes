@@ -1,7 +1,7 @@
 import { View, Image, Text, Button } from "react-native";
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import  styles  from "../styles/styles";
+import styles from "../styles/styles";
 
 export default function ImageManager({ photoHandler, imageHandler }) {
   const [permissionInfo, requestPermisson] = ImagePicker.useCameraPermissions();
@@ -22,9 +22,9 @@ export default function ImageManager({ photoHandler, imageHandler }) {
       if (!hasPermission) {
         return;
       }
-      let takePhotoResult = await ImagePicker.launchCameraAsync({allowsEditing: true}); //this is to take a photo
+      let takePhotoResult = await ImagePicker.launchCameraAsync({ allowsEditing: true }); //this is to take a photo
 
-      if (!takePhotoResult.canceled) {setPhotoUri(takePhotoResult.assets[0].uri)}
+      if (!takePhotoResult.canceled) { setPhotoUri(takePhotoResult.assets[0].uri) }
       setPhotoUri(takePhotoResult.uri);
       photoHandler(takePhotoResult.uri);
     } catch (err) {
@@ -45,7 +45,7 @@ export default function ImageManager({ photoHandler, imageHandler }) {
         quality: 1,
       });
 
-      if (!uploadResult.canceled) {setImageUri(uploadResult.assets[0].uri)}
+      if (!uploadResult.canceled) { setImageUri(uploadResult.assets[0].uri) }
       setImageUri(uploadResult.uri);
       imageHandler(uploadResult.uri);
     } catch (err) {
@@ -58,24 +58,24 @@ export default function ImageManager({ photoHandler, imageHandler }) {
       <Button title="Take a photo" onPress={takePhotoHandler} />
       {photoUri ? (
         <View>
-            <Image source={{ uri: photoUri }} style={{ width: 200, height: 200 }} />
-            <Button title="Delete" onPress={() => {setPhotoUri("")}} />
+          <Image source={{ uri: photoUri }} style={{ width: 200, height: 200 }} />
+          <Button title="Delete" onPress={() => { setPhotoUri("") }} />
         </View>
       ) : (
-        <Text style = {styles.addNewPlaceholder}> No image yet! Please take a photo using your camera...</Text>
+        <Text style={styles.addNewPlaceholder}> No image yet! Please take a photo using your camera...</Text>
       )}
 
 
       <Button title="Upload an image" onPress={uploadImageHandler} />
       {imageUri ? (
         <View>
-            <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
-            <Button title="Delete" onPress={() => {setImageUri("")}} />
+          <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+          <Button title="Delete" onPress={() => { setImageUri("") }} />
         </View>
       ) : (
-        <Text style = {styles.addNewPlaceholder}> No image yet! Please upload a photo from your library...</Text>
+        <Text style={styles.addNewPlaceholder}> No image yet! Please upload a photo from your library...</Text>
       )}
-      
+
     </View>
   );
 }

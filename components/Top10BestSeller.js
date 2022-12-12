@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {  View, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ClothItem from './ClothItem';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { firestore } from '../Firebase/firebase-setup';
 
-export default function Top10BestSeller () {
+export default function Top10BestSeller() {
   const [clothes, setClothes] = useState([]);
 
   useEffect(() => {
@@ -32,30 +32,29 @@ export default function Top10BestSeller () {
 
   const name = "clothes list";
   return (
-      <SafeAreaView>
-         <View >
-              <FlatList 
-                  data={clothes.sort((a,b) => {
-                    const aNum = a.likes - a.dislikes;
-                    const bNum = b.likes - b.dislikes;
-                    return bNum - aNum;
-                  }).slice(0,10)} 
-                  maxToRenderPerBatch = {10}
-                  ItemSeparatorComponent={this.FlatListItemSeparator}
-                  keyExtractor = {item=>item.id}
-                  renderItem = {({ item, index }) => {
-                      return (
-                          <ClothItem
-                              cloth={item}
-                              onDelete={null}
-                              showResult={false}
-                              indexKeyId={index}
-                          />
-                      );
-                  }}
-              >
-              </FlatList>
-          </View>
-      </SafeAreaView>
+    <SafeAreaView>
+      <View >
+        <FlatList
+          data={clothes.sort((a, b) => {
+            const aNum = a.likes - a.dislikes;
+            const bNum = b.likes - b.dislikes;
+            return bNum - aNum;
+          }).slice(0, 10)}
+          maxToRenderPerBatch={10}
+          keyExtractor={item => item.id}
+          renderItem={({ item, index }) => {
+            return (
+              <ClothItem
+                cloth={item}
+                onDelete={null}
+                showResult={false}
+                indexKeyId={index}
+              />
+            );
+          }}
+        >
+        </FlatList>
+      </View>
+    </SafeAreaView>
   );
 }

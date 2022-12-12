@@ -1,9 +1,9 @@
-import {signOut} from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
-import { firestore, auth, storage } from '../Firebase/firebase-setup';
+import { firestore, auth } from '../Firebase/firebase-setup';
 import { deleteFromDB } from "../Firebase/firestore";
 import NotificationManager from "./NotificationManager";
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ import {
 import ClothItem from './ClothItem';
 import styles from "../styles/styles";
 
-export default function MyProfile () {
+export default function MyProfile() {
   const [clothes, setClothes] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -53,20 +53,20 @@ export default function MyProfile () {
   const currentName = email.match(/^([^@]*)@/)[1];
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.profileContainer}>
-          <Image
-            style={styles.userImg}
-            source={{uri: 'https://gravatar.com/avatar/78a296d008e5796f3f3e2d849819e9dc?s=400&d=mp&r=x'}}
-          />
+        <Image
+          style={styles.userImg}
+          source={{ uri: 'https://gravatar.com/avatar/78a296d008e5796f3f3e2d849819e9dc?s=400&d=mp&r=x' }}
+        />
         <Text style={styles.userName}>{currentName}</Text>
       </View>
       <Button title="Logout" onPress={() => signOut(auth)} />
       <NotificationManager clothes={clothes} />
-      <FlatList 
+      <FlatList
         data={clothes?.filter(data => data?.user === auth.currentUser.uid)}
-        keyExtractor = {item=>item.id}
-        renderItem = {({ item }) => {
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => {
           return (
             <ClothItem
               cloth={item}
@@ -77,6 +77,6 @@ export default function MyProfile () {
         }}
       >
       </FlatList>
-      </SafeAreaView>
+    </SafeAreaView>
   );
 }

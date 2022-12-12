@@ -1,12 +1,10 @@
-import  { Button, Linking } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { Button, Linking } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useState, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   NavigationContainer,
   getFocusedRouteNameFromRoute,
-  Link
 } from "@react-navigation/native";
 import AddNew from "./components/AddNew";
 import Discover from "./components/Discover";
@@ -19,16 +17,10 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./Firebase/firebase-setup";
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import * as Notifications from "expo-notifications";
-
-// import Map from "./components/Map";
-
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-
 
 Notifications.setNotificationHandler({
   handleNotification: async () => {
@@ -58,15 +50,10 @@ export default function App() {
   useEffect(() => {
     const subscription = Notifications.addNotificationReceivedListener(
       (notificaftion) => {
-        // console.log("notification received ", notificaftion);
       }
     );
     const subscription2 = Notifications.addNotificationResponseReceivedListener(
       async (notificationResponse) => {
-        // console.log(
-        //   "notification interacted ",
-        //   notificationResponse.notification.request.content.data
-        // );
         if (notificationResponse.notification.request.content.data.url) {
           try {
             await Linking.openURL(
@@ -126,40 +113,40 @@ export default function App() {
   const AppStack = () => {
     return (
       <Stack.Navigator>
-      <Stack.Screen
-        name="Back"
-        component={HomeTabs}
-        options={({ route }) => ({
-          headerTitle: getHeaderTitle(route),
-          headerShown: false,
-        })
-      }
-      />
+        <Stack.Screen
+          name="Back"
+          component={HomeTabs}
+          options={({ route }) => ({
+            headerTitle: getHeaderTitle(route),
+            headerShown: false,
+          })
+          }
+        />
 
-      <Stack.Screen
-        name="MyProfile"
-        component={MyProfile}
-        options={{
-          headerTitleAlign: "center",
-        }}
-      />
+        <Stack.Screen
+          name="MyProfile"
+          component={MyProfile}
+          options={{
+            headerTitleAlign: "center",
+          }}
+        />
 
-      <Stack.Screen
-        name="AddReview"
-        component={AddReview}
-        options={{
-          headerTitleAlign: "center",
-        }}
-      />
+        <Stack.Screen
+          name="AddReview"
+          component={AddReview}
+          options={{
+            headerTitleAlign: "center",
+          }}
+        />
 
-      <Stack.Screen
-        name="ReviewScreen"
-        component={ReviewScreen}
-        options={{
-          headerTitleAlign: "center",
-        }}
-      />
-    </Stack.Navigator>
+        <Stack.Screen
+          name="ReviewScreen"
+          component={ReviewScreen}
+          options={{
+            headerTitleAlign: "center",
+          }}
+        />
+      </Stack.Navigator>
     );
   };
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -241,7 +228,7 @@ function getHeaderTitle(route) {
     case "Discover":
       return "Discover";
     case "Top10BestSeller":
-        return "Top10BestSeller";  
+      return "Top10BestSeller";
   }
 }
 
