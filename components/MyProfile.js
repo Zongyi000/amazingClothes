@@ -63,7 +63,7 @@ export default function MyProfile() {
         <Text style={styles.userName}>{currentName}</Text>
       </View>
       <Button title="Logout" onPress={() => signOut(auth)} />
-      <NotificationManager clothes={clothes} />
+      <NotificationManager />
       <FlatList
         data={clothes?.filter(data => data?.user === auth.currentUser.uid)}
         keyExtractor={item => item.id}
