@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList,TextInput } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList } from "react-native";
 import DiscoverItem from "./DiscoverItem";
 import { collection, onSnapshot } from "firebase/firestore";
 import { firestore } from "../Firebase/firebase-setup";
@@ -31,15 +30,15 @@ export default function Discover() {
 
   const curclothes = 0;
   return (
-      <FlatList
-        data={clothes}
-        renderItem={({ item }) => {
-          return (
-            <DiscoverItem cloth={item} />
-          );
-        }}
-        keyExtractor={item => item.id}
-      />
+    <FlatList
+      data={clothes}
+      renderItem={({ item }) => {
+        return (
+          <DiscoverItem cloth={item} />
+        );
+      }}
+      keyExtractor={item => item.id}
+    />
   );
 }
 
