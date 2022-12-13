@@ -36,7 +36,7 @@ function DiscoverItem({ cloth }) {
     };
     getImageURL();
   }, []);
-  const username = cloth.user;
+  const username = cloth.user.substring(0,4);
   const clothname = cloth.title;
 
   return (
@@ -47,6 +47,13 @@ function DiscoverItem({ cloth }) {
     }}
       android_ripple={{ color: "black", foreground: true }}
     >
+                <View style={styles.discovercontainer}>
+            <Text style={styles.titleStyle}>{clothname}</Text>
+            <View style={styles.centerContentStyle}>
+              <FontAwesomeIcon icon={faMugSaucer} />
+              <Text style={styles.TextStyle}>Posted by {username}</Text>
+            </View>
+          </View>
       <View style={styles.card}>
         <ImageBackground
           style={styles.back}
@@ -54,14 +61,6 @@ function DiscoverItem({ cloth }) {
             uri: imageURL
           }}
         >
-
-          <View style={styles.discovercontainer}>
-            <Text style={styles.titleStyle}>{clothname}</Text>
-            <View style={styles.centerContentStyle}>
-              <FontAwesomeIcon icon={faMugSaucer} />
-              <Text style={styles.TextStyle}>Posted by {username}</Text>
-            </View>
-          </View>
 
           <View style={styles.cardFooter}>
             <View style={styles.cardFooterLeft}>

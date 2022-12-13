@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList } from "react-native";
+import { FlatList,TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DiscoverItem from "./DiscoverItem";
 import { collection, onSnapshot } from "firebase/firestore";
@@ -31,7 +31,6 @@ export default function Discover() {
 
   const curclothes = 0;
   return (
-    <SafeAreaView>
       <FlatList
         data={clothes}
         renderItem={({ item }) => {
@@ -41,7 +40,6 @@ export default function Discover() {
         }}
         keyExtractor={item => item.id}
       />
-    </SafeAreaView>
   );
 }
 
