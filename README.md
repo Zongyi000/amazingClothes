@@ -4,9 +4,9 @@ Amazing Clothes is a social media and recommendation platform for parents where 
 
 ## Tech
 React Native | JavaScript | Firebase
-Goole Cloud (for user location, disabled for billing reasons): https://console.cloud.google.com/storage/browser?project=amazingclothes-705ac&prefix=
-Firebase (noSQL database): https://console.firebase.google.com/u/0/project/amazingclothes-705ac/firestore/data/~2Fclothes~2F2wvB0rz5ADIfdvgfbwqR
-accout name of Google Cloud and Firebase: zongyijiang98@gmail.com
+- Goole Cloud (for user location, disabled for billing reasons): https://console.cloud.google.com/storage/browser?project=amazingclothes-705ac&prefix=
+- Firebase (noSQL database): https://console.firebase.google.com/u/0/project/amazingclothes-705ac/firestore/data/~2Fclothes~2F2wvB0rz5ADIfdvgfbwqR
+- accout name of Google Cloud and Firebase: zongyijiang98@gmail.com
 
 ## Application Features
 - Fashionable parents have the phenomenon of conformity and chasing           fashion clothes for their kids. In our app, users can upload pictures (videos) of products they are interested in, and follow the trend of the fashion product based on the likes or dislikes of other users for purchase reference. 
